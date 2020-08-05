@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AuthApiService from './services/auth-api-service';
 import TokenService from './services/token-service';
 
@@ -18,10 +18,16 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+          console.log('hello')
+
     const { loginUsername, loginPassword } = event.target
+        console.log(loginUsername.value)
+        console.log(loginPassword.value)
+
     AuthApiService.postLogin({
       userName: loginUsername.value,
       password: loginPassword.value,
+
     })
 
       .then(response => {
@@ -30,12 +36,16 @@ class Login extends Component {
         TokenService.saveAuthToken(response.authToken)
         TokenService.saveUserId(response.userId)
         window.location = '/homepage'
-      })
+
+
       .then(response => {
       })
-      .catch(err => {
-        alert(err);
-      });
+
+
+      })
+      // .catch(err => {
+      //   // alert(err);
+      // });
   }
 
   validateloginUsername(inputEmail) {
@@ -79,6 +89,8 @@ class Login extends Component {
                 placeholder="my.username@ymail.com"
                 required
               />
+                    <p class="error-message">username is not valid, please try again</p>      
+
               <label htmlFor="loginPassword">Password: Newpassword1</label>
               <input
                 className="login-input"
@@ -87,6 +99,8 @@ class Login extends Component {
                 placeholder="Password"
                 required
               />
+                    <p class="error-message">password is not valid, please try again</p>      
+
               <button type="submit" className="login-button">
                 Login
               </button>
@@ -94,7 +108,7 @@ class Login extends Component {
           </div>
           <div className="link-register">
             <p>Don't have an account yet?</p>
-            {/* <Link to="/register" className="register-link">Sign up here</Link> */}
+            <Link to="/register" className="register-link">Sign up here</Link>
           </div>
         </div>
       </section>

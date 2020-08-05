@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingPage from "./LandingPage";
 import HomePage from "./HomePage";
 import Mylist from "./Mylist";
@@ -52,41 +52,42 @@ class App extends Component {
       <div className="App">
         <main>
           {/* <Login /> */}
-          <LandingPage />
+          {/* <LandingPage />
            <Register />
           <HomePage />
           <Checklist />
-          <Mylist />
+          <Mylist /> */}
 
 
-          {/* <BrowserRouter>
+          <BrowserRouter>
             <Switch>
               <Route exact path="/" component={LandingPage} />
-              <Route
+              <Route exact path="/homepage" component={HomePage} />
+              <Route path="/register" component={Register} /> 
+             <Route path="/checklist" component={Checklist} />
+              <Route path="/my-list" component={Mylist} />
+
+              {/* <Route
                 exact
                 path="/homepage"
               //   render={(props) => <HomePage tabs={this.state.tabsProp} />}
-              />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} /> 
-           <Route exact path="/forum"
+              /> */}
+              {/* <Route path="/login" component={Login} /> */}
+           {/* <Route exact path="/forum"
                 render={(props) => (
                   <Forum
                     tabs={this.state.tabsProp}
                     updateNote={this.updateNote}
                   />
                 )}
-              /> */
-              /* <Route path="/checklist" component={Checklist} />
-              <Route path="/my-list" component={Mylist} />
+                /> */ }
+
             </Switch>
-          </BrowserRouter> */}
+          </BrowserRouter> 
 
         </main>
       </div>
     );
-
-  }
 }
-
+}
 export default App;
