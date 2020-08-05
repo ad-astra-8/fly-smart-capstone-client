@@ -15,14 +15,36 @@ class Login extends Component {
     };
   }
 
+  validateloginUsername(inputEmail) {
+    let outputEmail = inputEmail;
+    let mailformat = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\w{2,3})+$/;
+    if (!inputEmail.match(mailformat)) {
+      outputEmail = "";
+    }
+    return outputEmail;
+  }
+
+  validateloginPassword(inputloginPassword) {
+    let outputloginPassword = inputloginPassword;
+    // at least one number, one lowercase and one uppercase letter
+    // at least eight characters that are letters, numbers or the underscore
+    let loginPasswordformat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$/;
+
+    if (!inputloginPassword.match(loginPasswordformat)) {
+      outputloginPassword = "";
+    }
+    return outputloginPassword;
+  }
+
+
 
   handleSubmit = (event) => {
     event.preventDefault();
-          console.log('hello')
+    console.log('hello')
 
     const { loginUsername, loginPassword } = event.target
-        console.log(loginUsername.value)
-        console.log(loginPassword.value)
+    console.log(loginUsername.value)
+    console.log(loginPassword.value)
 
     AuthApiService.postLogin({
       userName: loginUsername.value,
@@ -38,35 +60,16 @@ class Login extends Component {
         window.location = '/homepage'
 
 
-      .then(response => {
-      })
+        // .then(response => {
+        // })
 
 
       })
-      // .catch(err => {
-      //   // alert(err);
-      // });
+      .catch(err => {
+        console.log(err);
+      });
   }
 
-  validateloginUsername(inputEmail) {
-    let outputEmail = inputEmail;
-    let mailformat = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\w{2,3})+$/;
-    if (!inputEmail.match(mailformat)) {
-      outputEmail = "";
-    }
-    return outputEmail;
-  }
-
-  validateloginPassword(inputloginPassword) {
-    let outputloginPassword = inputloginPassword;
-    // at least one number, one lowercase and one uppercase letter
-    // at least eight characters that are letters, numbers or the underscore
-    let loginPasswordformat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$/;
-    if (!inputloginPassword.match(loginPasswordformat)) {
-      outputloginPassword = "";
-    }
-    return outputloginPassword;
-  }
 
 
   render() {
@@ -89,7 +92,7 @@ class Login extends Component {
                 placeholder="my.username@ymail.com"
                 required
               />
-                    <p class="error-message">username is not valid, please try again</p>      
+              <p class="error-message">username is not valid, please try again</p>
 
               <label htmlFor="loginPassword">Password: Newpassword1</label>
               <input
@@ -99,7 +102,7 @@ class Login extends Component {
                 placeholder="Password"
                 required
               />
-                    <p class="error-message">password is not valid, please try again</p>      
+              <p class="error-message">password is not valid, please try again</p>
 
               <button type="submit" className="login-button">
                 Login

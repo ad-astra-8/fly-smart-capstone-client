@@ -1,158 +1,140 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
 
+
 class Mylist extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            inputValue: "",
-            list: [],
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      formValid: false,
+      name: "",
+      tabName: "",
+      content: "",
+    };
+  }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-    // componentDidMount() {
-    //     let getCollectionByUserId = `https://keto-diet-api.herokuapp.com/api/notes`;
-    //     //  /${TokenService.getUserId()}`;
+  updatetabName(tabName) {
+    this.setState({
+      tabName: {
+        value: tabName,
+      },
+    });
+  }
 
-    //     fetch(getCollectionByUserId)
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             this.setState({
-    //                 folderList: data,
-    //             });
-    //         })
-    //         .catch((error) => alert(error));
-    // }
+  updateName = (name) => {
+    this.setState({
+      name: {
+        value: name,
+      },
+    });
+  };
 
-    // MylistFilterOnChange = (event) => {
-    //     this.setState({
-    //         inputValue: event.target.value,
-    //     });
-    // };
+  updateContent = (content) => {
+    this.setState({
+      content: {
+        value: content,
+      },
+    });
+  };
 
-    // handleTabClick = (note_folder_id) => {
-    //     this.setState({ currentTabIndex: note_folder_id });
-    // };
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value.trim() });
+  };
 
-    // renderButtons() {
-    //     const currentButton = Object.entries(this.state.tabs).map(
-    //         ([key, value]) => {
-    //             let id = parseInt(key);
+  handleSubmit = (e) => {
+    e.preventDefault();
 
-    //             return (
-    //                 <button
-    //                     className="tab"
-    //                     key={id}
-    //                     type="button"
-    //                     onClick={() => this.handleTabClick(id)}
-    //                 >
-    //                     {value}
-    //                 </button>
-    //             );
-    //         }
-    //     );
-    //     return currentButton;
-    // }
+    const { name, tabName, content } = e.target;
+    const note = {
+      name: name.value,
+      id_folder: parseInt(tabName.value),
+      content: content.value,
+    };
 
-    // renderContent() {
-    //     const currentTab = this.props.tabs.map((tab, index) => {
-    //         if (this.state.currentTabIndex === tab.note_folder_id) {
+    const url = "https://keto-diet-api.herokuapp.com/api/notes";
 
-    //             return (
-    //                 <div key={index}>
-    //                     <h2 className="content-title">{tab.name}</h2>
-    //                     <div className="content"><p className="content-p">{tab.content}</p></div>
-    //                 </div>
-    //             );
-    //         } else {
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(note),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then((error) => {
+            throw error;
+          });
+        }
+        return res.json();
+      })
+      .then((data) => {
+        this.props.updateNote(data);
+        alert('Post added!');
+        window.location = '/forum'
+      })
 
-    //             return null;
-    //         }
+      .catch((error) => {
+        // this.setState({ appError: error });
+      });
+  };
 
-    //     });
-    //     return currentTab;
-    // }
+  render() {
+    return (
+      <div>
+        <Navbar />
+        <section class="my-list">
 
-    // renderTitle() {
-    //     const currentTitle = this.props.tabs[this.state.currentTabIndex];
+          <h2 class="forum">Create your own list</h2>
+          <form className="Mylist-form" onSubmit={this.handleSubmit}>
 
-    //     return currentTitle && <h2>{currentTitle.name}</h2>;
-    // }
-
-    render() {
-        // const filteredMylist = this.state.folderList.filter((tab) => {
-        //     let content = tab.content
-        //         .toLowerCase()
-        //         .includes(this.state.inputValue.toLowerCase());
-        //     let title = tab.name
-        //         .toLowerCase()
-        //         .includes(this.state.inputValue.toLowerCase());
-        //     return content || title;
-        // });
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////
-        return (
-            <div>
-                <Navbar />
-                <section class="my-list">
-
-                    <h2 class="forum">Create your own list</h2>
-                    <form className="Mylist-form">
-                        <label for="search-term">Add your personal items:</label>
-                        <input type="input" name="search" id="search-term" value="" placeholder="Bring ipad" />
-                        <button type="submit" id="submit-keyword">Add</button>
-                        <p className="error-message">please enter an item</p>
-                        <p className="error-message">sorry, something went wrong</p>
-
-
-                        <h3>My list:</h3>
-                        <h4>Thing one:</h4>
-                        <p class="lorem">"Lorem ipsum dolor sit amet."</p>
-
-                        <h4>Thing two:</h4>
-                        <p class="lorem">"Anim id est laborum."</p>
-
-                        <h4>Thing three:</h4>
-                        <p class="lorem">"Ut enim ad minim veniam."</p>
-                    </form>
-                </section>
-
-                {/* <fieldset className="search-div">
-              <label className="search-label" htmlFor="search-term">
-                Enter a keyword of your choice:
-              </label>
+            <label for="search-term">Add your personal items:</label>
+            <input type="input" name="search" id="postComment" name="content" placeholder="Bring ipad" onChange={(e) => this.updateContent(e.target.value)}/>
+            <button type="submit" id="submit-btn">Add</button>
+            <p className="error-message">please enter an item</p>
+            <p className="error-message">sorry, something went wrong</p>
+            {/* <fieldset className="post-title">
+              <label htmlFor="title">Give a title for your post</label>
               <input
-                className="search-input"
                 type="text"
-                value={this.state.inputValue}
-                onChange={this.MylistFilterOnChange}
-                id="search-term"
-                placeholder="enter keyword"
+                name="name"
+                id="name"
+                defaultValue=""
+                onChange={(e) => this.updateName(e.target.value)}
               />
-            </fieldset>
-            <div className="postResults">
-              <h2>Results matching your specific search:</h2>
-              {this.state.inputValue &&
-                filteredMylist.map(({ name, content, }, index) => (
-                  <div key={index} className="searchTerm-results">
-                    <h2>{name}</h2>
-                    <p className="content-p">{content}</p>
-                  </div>
+            </fieldset> */}
 
-                ))}
-            </div>
+              {/* <label htmlFor="post-comment">
+                Post your comment about:
+              </label>
+              <textarea
+                id="postComment"
+                placeholder="leave your comment here"
+                name="content"
+                onChange={(e) => this.updateContent(e.target.value)}
+              ></textarea>
+            <button type="submit" id="submit-btn">
+              Submit
+            </button> */}
 
-            <div className="tabsContainer">
-              <p className='intro'>Click on a tab and search posts per topics!</p>
+            <h3>My list:</h3>
+            <input type="checkbox" name="item" value="passport"  />
+            <label for="item">Bring ipad</label><br />
+            <input type="checkbox" name="item" />
+            <label for="item">Lorem ipsum dolor sit amet</label><br />
+            <input type="checkbox" name="item"  />
+            <label for="item">Lorem ipsum dolor sit amet</label><br />
+          </form>
+        </section>
+      </div>
 
-              {this.renderButtons()}
-              {!!this.state.folderList.length && this.renderContent()}
-
-            </div> */}
-
-            </div>
-        );
-    }
+    );
+  }
 }
 
 export default Mylist;
+
+
+
+

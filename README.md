@@ -1,68 +1,232 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# keto-diet-capstone-client
 
-## Available Scripts
+"Everything Keto" app will help users gain all the information they need about the Keto diet. 
+Keto dieters usually have to thoroughly search through scattered information to gather just the basic guidelines. 
+The app will teach the users about the keto diet and guide them through the process.
+Once successfully registered and logged in, users will be able to search for keto recipes based on a choosen ingredient.
+The app will be using Spoonacular API. It will display recipes nutriment information as well as their pictures. 
+They will also be able to save their favorite recipes into their account, as well as access them every time they log in.
+All the more, the app will enable users to read post comments about diet routine, general ideas or even share their own recipes.
+It’s user-friendly, and accessible to everyone.
 
-In the project directory, you can run:
+## Working Prototype
+You can access a working prototype of the node app here: https://keto-diet-api.herokuapp.com/ and react app 
 
-### `npm start`
+## User Stories
+This app is for logged-in user.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Landing Page
+* As a visitor,
+* I want to understand what I can do with this app (or sign up, or log in), 
+* So I can decide if I want to use it.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Login Page
+* As a returning register user
+* I want to enter my password and username to use this app,
+* So I can have access to my account.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Sign Up
+* As a visitor
+* I want to register to use this app
+* So I can create a personal Everything Keto account.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Home Page
+* As a logged-in user,
+* I want to be able to preview the content of the app,
+* So i can decide what section I want to navigate to.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### About Page
+* As a logged-in user,
+* I want to see guidelines about the keto diet,
+* So that I can start searching and gathering information about the keto diet.
 
-### `npm run eject`
+#### Recipes Page
+* As a logged-in user,
+* I want to be able to find diversed keto recipes from the app, 
+* So that I can control and monitor my eating habits.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Forum Page
+* As a logged-in user,
+* I want to be able to search and post comments about the keto experience,
+* So that I can share ideas with the other members.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Account Page
+* As a logged-in user,
+* I want to be able to see my saved favorite recipes from my previous searches, as well as my previous submitted comments,
+* So that I can keep track of my activity on the app.
 
-## Learn More
+### Wireframes
+Landing/Login Page
+:-------------------------:
+![Landing/Login Page](/github-images/wireframes/keto-diet-capstone-client-landingpage.jpg) 
+Home Page
+![Home Page](/github-images/wireframes/keto-diet-capstone-client-homepage.jpg) 
+Forum Page
+![Forum Page](/github-images/wireframes/keto-diet-capstone-client-forumpage.jpg) 
+My Posts Page
+![My Posts Page](/github-images/wireframes/keto-diet-capstone-client-myposts.jpg) 
+My recipes Page
+![My recipes Page](/github-images/wireframes/keto-diet-capstone-client-myrecipes.jpg) 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Graybox Wireframes
+Full website graybox wireframes
+:-------------------------:
+![Full website graybox wireframes](/github-images/wireframes/graybox-wireframes.png) 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Screenshot
+Full Page Screenshot 
+:-------------------------:
+![Landing Page](/github-images/screenshots/homepage.png) 
 
-### Code Splitting
+## Functionality
+The app's functionality includes:
+* User can sort entries by: meal (eg. dinner, dessert, snack, breakfast)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Business Objects (back-end structure)
+* Users (database table)
+    * id  
+    * email (email validation)
+    * password (at least one number, one lowercase and one uppercase letter at least eight characters that are letters, numbers or the underscore)
 
-### Analyzing the Bundle Size
+* Forum 
+    * id 
+    * user_id
+    * forum_folder_id
+    * title
+    * description 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+* Notes 
+    * id 
+    * name
+    * content
+    * modified
+    * id_folder
+  
+* Recipes
+    * id
+    * user_id
+    * title
+    * image
+    * source
 
-### Making a Progressive Web App
+## Components Structure
+* __Index.js__ (stateless)
+    * __App.js__ (stateful)
+        * __LandingPage.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
+            * __Login.js__ (stateful) - 
+            * __Register.js__ (stateful) - 
+        * __HomePage.js__ (stateful)  - 
+            * __Navbar.js__ (stateless) - 
+            * __About.js__ (stateless) - 
+            * __Recipes.js__ (stateless) - 
+            * __Forum.js__ (statelful) - 
+                 * __AddPost.js__ (statelful) - 
+        * __AccountPage.js__ (stateful) - 
+            * __Navbar.js__ (stateless) - 
+        * __MyRecipesPage.js__ (stateful) - 
+            * __Navbar.js__ (stateless) - 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+            
 
-### Advanced Configuration
+## Api Documentation
+* The Spoonacular api address is  https://developer.Spoonacular.com/Spoonacular-docs-recipe-api
+* The endpoint url is https://api.Spoonacular.com/search
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Technology
+* Front-End: HTML5, CSS3, JavaScript ES6, React
+* Back-End: Node.js, Express.js, Mocha, Chai, RESTful API Endpoints, Postgress
+* Development Environment: Heroku
 
-### Deployment
+## Responsive
+App is built to be usable on mobile devices, as well as responsive across mobile, tablet, laptop, and desktop screen resolutions.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Development Roadmap
+This is v1.0 of the app, but future enhancements are expected to include:
+* More pages in order to include more search results 
+* A feature that will provide US & Metric Liquid Volume Conversions
 
-### `npm run build` fails to minify
+## How to run it
+Use command line to navigate into the project folder and run the following in terminal
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Local Node scripts
+* To install the node project ===> npm install
+* To migrate the database ===> npm run migrate -- 1
+* To run Node server (on port 8000) ===> npm run dev
+* To run tests ===> npm run test
+
+### Local React scripts
+* To install the react project ===> npm install
+* To run react (on port 3000) ===> npm start
+* To run tests ===> npm run test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
