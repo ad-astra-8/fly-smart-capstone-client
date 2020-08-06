@@ -1,16 +1,16 @@
-# keto-diet-capstone-client
+# Fly-Smart-capstone-client
 
-"Everything Keto" app will help users gain all the information they need about the Keto diet. 
-Keto dieters usually have to thoroughly search through scattered information to gather just the basic guidelines. 
-The app will teach the users about the keto diet and guide them through the process.
-Once successfully registered and logged in, users will be able to search for keto recipes based on a choosen ingredient.
-The app will be using Spoonacular API. It will display recipes nutriment information as well as their pictures. 
-They will also be able to save their favorite recipes into their account, as well as access them every time they log in.
-All the more, the app will enable users to read post comments about diet routine, general ideas or even share their own recipes.
+The app helps travelers getting more organized and alert for their upcoming trips. 
+It provides users with safety guidelines related to COVID 19 pandemic.
+Logged in users can check if they have everything they need before their flight by checking boxes of lists (initially provided) of mostly recommended items.
+Users are able to identify which category they belong to and follow related guidelines: example:
+"traveling with babies" - "elderly people" - "groups and families".
+Also, according to their needs, users can create new entries and annex them to the list initially provided.
+Users also have access to airport maps for eventual connections or just to spot airport amenities.
 It’s user-friendly, and accessible to everyone.
 
 ## Working Prototype
-You can access a working prototype of the node app here: https://keto-diet-api.herokuapp.com/ and react app 
+You can access a working prototype of the node app here: LIVE LINK TO APP HERE and react app 
 
 ## User Stories
 This app is for logged-in user.
@@ -25,53 +25,36 @@ This app is for logged-in user.
 * I want to enter my password and username to use this app,
 * So I can have access to my account.
 
-
 #### Sign Up
 * As a visitor
 * I want to register to use this app
-* So I can create a personal Everything Keto account.
-
+* So I can create a personal Fly Smart account.
 
 #### Home Page
 * As a logged-in user,
 * I want to be able to preview the content of the app,
-* So i can decide what section I want to navigate to.
+* So i can start looking for guidelines about traveling by plane during the COVID 19 pandemic.
 
-
-#### About Page
+#### Checklist Page
 * As a logged-in user,
-* I want to see guidelines about the keto diet,
-* So that I can start searching and gathering information about the keto diet.
+* I want to be able to match the recommended items with the items I am packing, 
+* So that I can organize my trip.
 
-#### Recipes Page
+#### My List Page
 * As a logged-in user,
-* I want to be able to find diversed keto recipes from the app, 
-* So that I can control and monitor my eating habits.
-
-
-#### Forum Page
-* As a logged-in user,
-* I want to be able to search and post comments about the keto experience,
-* So that I can share ideas with the other members.
-
-
-#### Account Page
-* As a logged-in user,
-* I want to be able to see my saved favorite recipes from my previous searches, as well as my previous submitted comments,
-* So that I can keep track of my activity on the app.
+* I want to be able to add new entries to my personal to-bring list,
+* So that I can create a list according to my personal needs.
 
 ### Wireframes
 Landing/Login Page
 :-------------------------:
-![Landing/Login Page](/github-images/wireframes/keto-diet-capstone-client-landingpage.jpg) 
+![Landing/Login Page](/github-images/wireframes/fly-smart-capstone-client-landingpage.jpg) 
 Home Page
-![Home Page](/github-images/wireframes/keto-diet-capstone-client-homepage.jpg) 
+![Home Page](/github-images/wireframes/fly-smart-capstone-client-homepage.jpg) 
 Forum Page
-![Forum Page](/github-images/wireframes/keto-diet-capstone-client-forumpage.jpg) 
+![Checklist Page](/github-images/wireframes/fly-smart-capstone-client-checklist.jpg) 
 My Posts Page
-![My Posts Page](/github-images/wireframes/keto-diet-capstone-client-myposts.jpg) 
-My recipes Page
-![My recipes Page](/github-images/wireframes/keto-diet-capstone-client-myrecipes.jpg) 
+![My List Page](/github-images/wireframes/fly-smart-capstone-client-mylist.jpg) 
 
 ### Graybox Wireframes
 Full website graybox wireframes
@@ -81,11 +64,12 @@ Full website graybox wireframes
 ## Screenshot
 Full Page Screenshot 
 :-------------------------:
-![Landing Page](/github-images/screenshots/homepage.png) 
+![Landing Page](/github-images/screenshots/homepage.png) MODIFY PLEASE
 
 ## Functionality
 The app's functionality includes:
-* User can sort entries by: meal (eg. dinner, dessert, snack, breakfast)
+* User can create entries 
+* User can mark entries as completed
 
 ## Business Objects (back-end structure)
 * Users (database table)
@@ -93,26 +77,18 @@ The app's functionality includes:
     * email (email validation)
     * password (at least one number, one lowercase and one uppercase letter at least eight characters that are letters, numbers or the underscore)
 
-* Forum 
+* Checklist 
     * id 
     * user_id
-    * forum_folder_id
     * title
-    * description 
+    * completed 
 
 * Notes 
     * id 
-    * name
-    * content
-    * modified
-    * id_folder
-  
-* Recipes
-    * id
     * user_id
     * title
-    * image
-    * source
+    * completed 
+  
 
 ## Components Structure
 * __Index.js__ (stateless)
@@ -122,20 +98,10 @@ The app's functionality includes:
             * __Register.js__ (stateful) - 
         * __HomePage.js__ (stateful)  - 
             * __Navbar.js__ (stateless) - 
-            * __About.js__ (stateless) - 
-            * __Recipes.js__ (stateless) - 
-            * __Forum.js__ (statelful) - 
-                 * __AddPost.js__ (statelful) - 
-        * __AccountPage.js__ (stateful) - 
+        * __Checklist.js__ (stateful) - 
             * __Navbar.js__ (stateless) - 
-        * __MyRecipesPage.js__ (stateful) - 
+        * __MyList.js__ (stateful) - 
             * __Navbar.js__ (stateless) - 
-
-            
-
-## Api Documentation
-* The Spoonacular api address is  https://developer.Spoonacular.com/Spoonacular-docs-recipe-api
-* The endpoint url is https://api.Spoonacular.com/search
 
 ## Technology
 * Front-End: HTML5, CSS3, JavaScript ES6, React
@@ -148,7 +114,6 @@ App is built to be usable on mobile devices, as well as responsive across mobile
 ## Development Roadmap
 This is v1.0 of the app, but future enhancements are expected to include:
 * More pages in order to include more search results 
-* A feature that will provide US & Metric Liquid Volume Conversions
 
 ## How to run it
 Use command line to navigate into the project folder and run the following in terminal
