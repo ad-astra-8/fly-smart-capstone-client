@@ -83,7 +83,7 @@ The app's functionality includes:
     * title
     * completed 
 
-* To-do 
+* Notes 
     * id 
     * user_id
     * title

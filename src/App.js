@@ -8,10 +8,10 @@ import Checklist from "./Checklist";
 import Register from './Register';
 
 class App extends Component {
-  //   state = {
-  //     // tabsProp: [],
-  //     // favorites: []
-  //   };
+    state = {
+      // tabsProp: [],
+      // favorites: []
+    };
 
   // componentDidMount() {
   //   fetch("https://keto-diet-api.herokuapp.com/api/notes")
@@ -51,20 +51,12 @@ class App extends Component {
     return (
       <div className="App">
         <main>
-          {/* <Login /> */}
-          {/* <LandingPage />
-           <Register />
-          <HomePage />
-          <Checklist />
-          <Mylist /> */}
-
-
           <BrowserRouter>
             <Switch>
               <Route exact path="/" component={LandingPage} />
               <Route exact path="/homepage" component={HomePage} />
-              <Route path="/register" component={Register} /> 
-             <Route path="/checklist" component={Checklist} />
+              <Route path="/register" component={Register} />
+              <Route path="/checklist" component={Checklist} />
               <Route path="/my-list" component={Mylist} />
 
               {/* <Route
@@ -73,7 +65,7 @@ class App extends Component {
               //   render={(props) => <HomePage tabs={this.state.tabsProp} />}
               /> */}
               {/* <Route path="/login" component={Login} /> */}
-           {/* <Route exact path="/forum"
+              {/* <Route exact path="/forum"
                 render={(props) => (
                   <Forum
                     tabs={this.state.tabsProp}
@@ -83,11 +75,11 @@ class App extends Component {
                 /> */ }
 
             </Switch>
-          </BrowserRouter> 
+          </BrowserRouter>
 
         </main>
       </div>
     );
-}
+  }
 }
 export default App;

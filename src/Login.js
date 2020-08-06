@@ -70,8 +70,6 @@ class Login extends Component {
       });
   }
 
-
-
   render() {
     const errorMessage = this.state.error ? (
       <p className="error-message">{this.state.error}</p>) : (false);
@@ -79,8 +77,8 @@ class Login extends Component {
     return (
       <section className="login-component">
         <div className="login-div">
-          <h1 class="title">Fly Smart</h1>
-          <h2 class="subtitle">Log in!</h2>
+          <h1 className="title">Fly Smart</h1>
+          <h2 className="subtitle">Log in!</h2>
           <div className="form-div">
             <form className="login-form" onSubmit={this.handleSubmit}>
               {errorMessage}
