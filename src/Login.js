@@ -90,7 +90,7 @@ class Login extends Component {
                 placeholder="my.username@ymail.com"
                 required
               />
-              <p class="error-message">username is not valid, please try again</p>
+              <p className="error-message">username is not valid, please try again</p>
 
               <label htmlFor="loginPassword">Password: Newpassword1</label>
               <input
@@ -100,7 +100,7 @@ class Login extends Component {
                 placeholder="Password"
                 required
               />
-              <p class="error-message">password is not valid, please try again</p>
+              <p className="error-message">password is not valid, please try again</p>
 
               <button type="submit" className="login-button">
                 Login
