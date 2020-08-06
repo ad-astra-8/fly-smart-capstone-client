@@ -16,42 +16,42 @@ class Checklist extends Component {
                         <fieldset>
                             <legend>All travelers: </legend><br />
                             <input type="checkbox" name="item" value="passport" checked />
-                            <label for="item"> I have my passport</label><br />
+                            <label htmlForm="item"> I have my passport</label><br />
                             <input type="checkbox" name="item-2" value="sanitizer" />
-                            <label for="item-2"> I have my 3 oz hand sanitizer</label><br />
+                            <label htmlForm="item-2"> I have my 3 oz hand sanitizer</label><br />
                             <input type="checkbox" name="item-3" value="visa" />
-                            <label for="item-3"> I have my visa</label><br />
+                            <label htmlForm="item-3"> I have my visa</label><br />
                         </fieldset>
 
                         <fieldset>
                             <legend>Travelers with babies: </legend><br />
                             <input type="checkbox" name="item-1" value="pacifier" />
-                            <label for="item-1"> I have the pacifier</label><br />
+                            <label htmlForm="item-1"> I have the pacifier</label><br />
                             <input type="checkbox" name="item-2" value="blanket" />
-                            <label for="item-2"> I have an extra blanket</label><br />
+                            <label htmlForm="item-2"> I have an extra blanket</label><br />
                             <input type="checkbox" name="item-3" value="visa" checked />
-                            <label for="item-3"> I have my visa</label><br /><br />
+                            <label htmlForm="item-3"> I have my visa</label><br /><br />
                         </fieldset>
 
                         <fieldset>
                             <legend>Elderly travelers: </legend><br />
                             <input type="checkbox" name="item-1" value="passport" />
-                            <label for="item-1"> I have my passport</label><br />
+                            <label htmlForm="item-1"> I have my passport</label><br />
                             <input type="checkbox" name="item-2" value="sanitizer" checked />
-                            <label for="item-2"> I have my 3 oz hand sanitizer</label><br />
+                            <label htmlForm="item-2"> I have my 3 oz hand sanitizer</label><br />
                             <input type="checkbox" name="item-3" value="meds" />
-                            <label for="item-3"> I have my meds</label><br />
+                            <label htmlForm="item-3"> I have my meds</label><br />
                         </fieldset>
 
 
                         <fieldset>
                             <legend>Group travelers: </legend><br />
                             <input type="checkbox" name="item-1" value="passport" checked />
-                            <label for="item-1"> I have my passport</label><br />
+                            <label htmlForm="item-1"> I have my passport</label><br />
                             <input type="checkbox" name="item-2" value="sanitizer" />
-                            <label for="item-2"> I have my 3 oz hand sanitizer</label><br />
+                            <label htmlForm="item-2"> I have my 3 oz hand sanitizer</label><br />
                             <input type="checkbox" name="item-3" value="visa" />
-                            <label for="item-3"> I have hotel info</label><br />
+                            <label htmlForm="item-3"> I have hotel info</label><br />
                         </fieldset>
                     </form>
                 </section>

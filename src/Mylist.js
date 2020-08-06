@@ -84,12 +84,12 @@ class Mylist extends Component {
     return (
       <div>
         <Navbar />
-        <section class="my-list">
+        <section className="my-list">
 
-          <h2 class="forum">Create your own list</h2>
+          <h2 className="forum">Create your own list</h2>
           <form className="Mylist-form" onSubmit={this.handleSubmit}>
 
-            <label for="search-term">Add your personal items:</label>
+            <label htmlFor="search-term">Add your personal items:</label>
             <input type="input" name="search" id="postComment" name="content" placeholder="Bring ipad" onChange={(e) => this.updateContent(e.target.value)}/>
             <button type="submit" id="submit-btn">Add</button>
             <p className="error-message">please enter an item</p>
@@ -120,11 +120,11 @@ class Mylist extends Component {
 
             <h3>My list:</h3>
             <input type="checkbox" name="item" value="passport"  />
-            <label for="item">Bring ipad</label><br />
+            <label htmlFor="item">Bring ipad</label><br />
             <input type="checkbox" name="item" />
-            <label for="item">Lorem ipsum dolor sit amet</label><br />
+            <label htmlFor="item">Lorem ipsum dolor sit amet</label><br />
             <input type="checkbox" name="item"  />
-            <label for="item">Lorem ipsum dolor sit amet</label><br />
+            <label htmlFor="item">Lorem ipsum dolor sit amet</label><br />
           </form>
         </section>
       </div>
