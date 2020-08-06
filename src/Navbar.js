@@ -26,7 +26,6 @@ class Navbar extends Component {
             <NavLink to="/homepage" className="nav-link"><li>Home</li></NavLink>
             <NavLink to="/checklist" className="nav-link"><li>Check</li></NavLink>
             <NavLink to="/my-list" className="nav-link"><li>List</li></NavLink>
-            {/* will add scr link to airports */}          
             <li><a href="https://airportguide.com/search/airport-search/" target='_blank' rel="noopener noreferrer" className="nav-link">Airports</a></li>
             <NavLink to="/" onClick={this.logOutClick} className="nav-link"><li href="#log out"><i className="fa fa-sign-out" aria-hidden="true"></i></li></NavLink>
           </ul>
