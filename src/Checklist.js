@@ -7,36 +7,48 @@ import Data from './Data';
 
 class Checklist extends Component {
     state = {
-        error: null,
         items: [],
-        completed: false
+        completed: {
+            0: true,
+            1: false,
+        }
     };
 
 
- 
-    // renderContent() {
-    // return checklist;
-    // }
+    onChange = event => {
+        const { value, items } = event.target
+        this.setState({
+            [items]: value
+        })
+    };
 
-    onCheckItem = (item) => {
+    onCheckItem = (index, item) => {
         const checklist = Data.map((item, index) => {
             console.log('handle check item called', { item })
-            this.setState({
-                completed: !this.state.completed
-            })
+            this.setState(state => ({
+                completed: { ...state.completed, [index]: !state.completed[index] }
+            }));
+            // this.setState({
+            //     completed: !this.state.completed
+            // })
         });
     }
 
     render() {
-        
+
         const checklist = Data.map((item, index) => {
             return (
                 <ul className="checklist-item">
-                    <li key={index} item={item}>
-                        <input type="checkbox" name="data" onClick={() => this.onCheckItem(item)} />
-                        <label htmlFor="item" style={{
-                            textDecoration: item.completed ? 'line-through' : null,
-                        }}>{item.title}</label>
+                    <li
+                        style={{
+                            textDecoration: this.state.completed[index]
+                                ? "line-through"
+                                : ""
+                        }}
+                        key={index}>
+                        <input id="chk" type="checkbox" name="data" onChange={() => this.onCheckItem(index)} />
+                   
+                    <label htmlFor="item">{item.title}</label>
                     </li>
                 </ul>
             );
