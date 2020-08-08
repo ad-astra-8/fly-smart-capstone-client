@@ -6,15 +6,17 @@ import Mylist from "./Mylist";
 import Checklist from "./Checklist";
 // import Login from './Login';
 import Register from './Register';
+// import Data from './Data';
+
 
 class App extends Component {
-    state = {
-      // tabsProp: [],
-      // favorites: []
-    };
+  //   state = {
+  //     data: [],
+  //     // mylist: []
+  //   };
 
   // componentDidMount() {
-  //   fetch("https://keto-diet-api.herokuapp.com/api/notes")
+  //   fetch("http://localhost:3000/")
   //     // if the api returns data ...
   //     .then((res) => {
   //       if (!res.ok) {
@@ -37,6 +39,25 @@ class App extends Component {
   //       //     error: err.message
   //       // })
   //     });
+  // }
+
+  // renderContent() {
+  //   const currentTab = this.props.tabs.map((tab, index) => {
+  //     if (this.state.currentTabIndex === tab.note_folder_id) {
+
+  //       return (
+  //         <div key={index}>
+  //           <h2 className="content-title">{tab.name}</h2>
+  //           <div className="content"><p className="content-p">{tab.content}</p></div>
+  //         </div>
+  //       );
+  //     } else {
+
+  //       return null;
+  //     }
+
+  //   });
+  //   return currentTab;
   // }
 
 

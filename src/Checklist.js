@@ -1,35 +1,76 @@
 import React, { Component } from 'react';
 import Navbar from "./Navbar";
+import Data from './Data';
+
 
 
 
 class Checklist extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            completed: false
-        };
-    }
-
-    updateCompleted = (completed) => {
-        this.setState({
-            completed: {
-                value: completed,
-            },
-        });
+    state = {
+        error: null,
+        items: [],
+        // mylist: []
+        checked: false
     };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
 
-        const { title, completed } = e.target;
-        const note = {
-            title: title.value,
-            completed: completed.value,
-        };
+    componentDidMount() {
+        console.log('Stateful component successfully mounted.');
+        fetch("http://localhost:3000/checklist")
+            // if the api returns data ...
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error("Something went wrong, please try again later.");
+                }
+                // ... convert it to json
+                return res.json();
+            })
+            // use the json api output
+            .then((data) => {
+                //check if there is meaningful data
+                console.log(data)
+
+                this.setState({
+                    items: data,
+                });
+
+
+            })
+            .catch((err) => {
+                console.error(err);
+                // this.setState({
+                //     error: err.message
+                // })
+            });
+    }
+
+    // renderContent() {
+    // return checklist;
+    // }
+
+    onCheckItem = (item) => {
+        const checklist = Data.map((item, index) => {
+            console.log('handle check item called', { item })
+            this.setState({
+                checked: !this.state.checked
+            })
+        });
     }
 
     render() {
+        
+        const checklist = Data.map((item, index) => {
+            return (
+                <ul className="checklist-item">
+                    <li key={index} item={item}>
+                        <input type="checkbox" name="data" onClick={() => this.onCheckItem(item)} />
+                        <label htmlFor="item" style={{
+                            textDecoration: item.checked ? 'line-through' : null,
+                        }}>{item.title}</label>
+                    </li>
+                </ul>
+            );
+        });
 
 
         return (
@@ -39,18 +80,21 @@ class Checklist extends Component {
                     <h2 className="">Checklist</h2>
                     <h3>Check what you have ready to pack:</h3>
 
-                    <form action="/action_page.php">
+                    <form>
                         <fieldset>
+                            {/* {!!this.state.data.length && this.renderContent()} */}
+                            {checklist}
+                            {/* 
                             <legend>All travelers: </legend><br />
                             <input type="checkbox" name="item" value="passport" checked />
                             <label htmlFor="item"> I have my passport</label><br />
                             <input type="checkbox" name="item-2" value="sanitizer" />
                             <label htmlFor="item-2"> I have my 3 oz hand sanitizer</label><br />
                             <input type="checkbox" name="item-3" value="visa" />
-                            <label htmlFor="item-3"> I have my visa</label><br />
+                            <label htmlFor="item-3"> I have my visa</label><br /> */}
                         </fieldset>
 
-                        <fieldset>
+                        {/* <fieldset>
                             <legend>Travelers with babies: </legend><br />
                             <input type="checkbox" name="item-1" value="pacifier" />
                             <label htmlFor="item-1"> I have the pacifier</label><br />
@@ -79,10 +123,10 @@ class Checklist extends Component {
                             <label htmlFor="item-2"> I have my 3 oz hand sanitizer</label><br />
                             <input type="checkbox" name="item-3" value="visa" />
                             <label htmlFor="item-3"> I have hotel info</label><br />
-                        </fieldset>
+                        </fieldset> */}
                     </form>
                 </section>
-            </div>
+            </div >
         );
     }
 

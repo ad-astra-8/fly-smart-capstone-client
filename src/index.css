@@ -77,7 +77,7 @@ button {
 }
 
 
-ul {
+.nav-container {
   list-style-type: none;
   margin: 0;
   padding: 10px;
@@ -199,4 +199,8 @@ ol {
 
 .no-display-bug {
   display: none;
+}
+
+.checklist-item {
+  background-color: white;
 }
