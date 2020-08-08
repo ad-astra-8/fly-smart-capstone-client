@@ -9,41 +9,11 @@ class Checklist extends Component {
     state = {
         error: null,
         items: [],
-        // mylist: []
-        checked: false
+        completed: false
     };
 
 
-    componentDidMount() {
-        console.log('Stateful component successfully mounted.');
-        fetch("http://localhost:3000/checklist")
-            // if the api returns data ...
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error("Something went wrong, please try again later.");
-                }
-                // ... convert it to json
-                return res.json();
-            })
-            // use the json api output
-            .then((data) => {
-                //check if there is meaningful data
-                console.log(data)
-
-                this.setState({
-                    items: data,
-                });
-
-
-            })
-            .catch((err) => {
-                console.error(err);
-                // this.setState({
-                //     error: err.message
-                // })
-            });
-    }
-
+ 
     // renderContent() {
     // return checklist;
     // }
@@ -52,7 +22,7 @@ class Checklist extends Component {
         const checklist = Data.map((item, index) => {
             console.log('handle check item called', { item })
             this.setState({
-                checked: !this.state.checked
+                completed: !this.state.completed
             })
         });
     }
@@ -65,7 +35,7 @@ class Checklist extends Component {
                     <li key={index} item={item}>
                         <input type="checkbox" name="data" onClick={() => this.onCheckItem(item)} />
                         <label htmlFor="item" style={{
-                            textDecoration: item.checked ? 'line-through' : null,
+                            textDecoration: item.completed ? 'line-through' : null,
                         }}>{item.title}</label>
                     </li>
                 </ul>
@@ -86,7 +56,7 @@ class Checklist extends Component {
                             {checklist}
                             {/* 
                             <legend>All travelers: </legend><br />
-                            <input type="checkbox" name="item" value="passport" checked />
+                            <input type="checkbox" name="item" value="passport" completed />
                             <label htmlFor="item"> I have my passport</label><br />
                             <input type="checkbox" name="item-2" value="sanitizer" />
                             <label htmlFor="item-2"> I have my 3 oz hand sanitizer</label><br />
@@ -100,7 +70,7 @@ class Checklist extends Component {
                             <label htmlFor="item-1"> I have the pacifier</label><br />
                             <input type="checkbox" name="item-2" value="blanket" />
                             <label htmlFor="item-2"> I have an extra blanket</label><br />
-                            <input type="checkbox" name="item-3" value="visa" checked />
+                            <input type="checkbox" name="item-3" value="visa" completed />
                             <label htmlFor="item-3"> I have my visa</label><br /><br />
                         </fieldset>
 
@@ -108,7 +78,7 @@ class Checklist extends Component {
                             <legend>Elderly travelers: </legend><br />
                             <input type="checkbox" name="item-1" value="passport" />
                             <label htmlFor="item-1"> I have my passport</label><br />
-                            <input type="checkbox" name="item-2" value="sanitizer" checked />
+                            <input type="checkbox" name="item-2" value="sanitizer" completed />
                             <label htmlFor="item-2"> I have my 3 oz hand sanitizer</label><br />
                             <input type="checkbox" name="item-3" value="meds" />
                             <label htmlFor="item-3"> I have my meds</label><br />
@@ -117,7 +87,7 @@ class Checklist extends Component {
 
                         <fieldset>
                             <legend>Group travelers: </legend><br />
-                            <input type="checkbox" name="item-1" value="passport" checked />
+                            <input type="checkbox" name="item-1" value="passport" completed />
                             <label htmlFor="item-1"> I have my passport</label><br />
                             <input type="checkbox" name="item-2" value="sanitizer" />
                             <label htmlFor="item-2"> I have my 3 oz hand sanitizer</label><br />

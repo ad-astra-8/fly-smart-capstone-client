@@ -3,19 +3,19 @@ const items = [
     {
         id: 1,
         title: 'Bring clothes',
-        checked: true,
+        completed: true,
     },
     {
         id: 2,
         title: 'Bring VISA, ESTA (if applicable)',
-        checked: false,
+        completed: false,
 
     },
 
     {
         id: 3,
         title: 'Bring charger',
-        checked: false,
+        completed: false,
     },
 ]
 
