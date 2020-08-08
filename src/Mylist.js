@@ -3,13 +3,12 @@ import Navbar from "./Navbar";
 
 
 class Mylist extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: "",
-      completed: false
-    };
-  }
+  state = {
+    items: [],
+    title: "",
+    completed: false
+  };
+
 
   updateTitle = (title) => {
     this.setState({
@@ -19,13 +18,31 @@ class Mylist extends Component {
     });
   };
 
-  updateCompleted = (completed) => {
+  updateContent = (content) => {
     this.setState({
-      completed: {
-        value: completed,
+      content: {
+        value: content,
       },
     });
   };
+
+  // updateCompleted = (completed) => {
+  //   this.setState({
+  //     completed: {
+  //       value: completed,
+  //     },
+  //   });
+  // };
+
+  onCheckItem = (index, item) => {
+    console.log('handle check item called', { item })
+    let { completed } = this.state;
+    // completed[index] = !completed[index]; 
+    completed = !completed;
+    this.setState(state => ({
+      completed: { ...state.completed, [index]: !state.completed[index] }
+    }));
+  }
 
   handleChange = (e) => {
     const { title, value } = e.target;
@@ -34,15 +51,15 @@ class Mylist extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log('new note added');
     const { title, completed } = e.target;
     const note = {
       title: title.value,
-      completed: completed.value,
+      completed: completed,
     };
 
-    ////TO UPDATE
-    const url = "https://keto-diet-api.herokuapp.com/api/notes";
+    // const url = "https://fly-smart-api.herokuapp.com/api/notes";
+    const url = "http://localhost:3000/my-list";
 
     fetch(url, {
       method: "POST",
@@ -62,7 +79,7 @@ class Mylist extends Component {
       .then((data) => {
         this.props.updateNote(data);
         alert('Post added!');
-        window.location = '/forum'
+        window.location = '/my-list'
       })
 
       .catch((error) => {
@@ -70,6 +87,21 @@ class Mylist extends Component {
       });
   };
 
+  renderTitle() {
+    const noteTitle = this.title;
+
+    return <h2>{noteTitle}</h2>;
+  }
+
+  handleAddItem = (itemTitle) => {
+    const newItems = [
+      ...this.state.items,
+      { title: itemTitle, checked: false }
+    ]
+    this.setState({
+      items: newItems
+    })
+  }
   render() {
     return (
       <div>
@@ -77,22 +109,31 @@ class Mylist extends Component {
         <section classtitle="my-list">
 
           <h2 classtitle="forum">Create your own list</h2>
-          <form classtitle="Mylist-form" onSubmit={this.handleSubmit}>
 
+          <form classtitle="Mylist-form" onSubmit={this.handleSubmit} onSubmit={this.handleAddItem}>
             <label htmlFor="search-term">Add your personal items:</label>
-            <input type="input" title="search" id="postComment" title="completed" placeholder="Bring ipad" onChange={(e) => this.updatecompleted(e.target.value)} />
+            <input
+              type="text"
+              name="title"
+              id="title"
+              defaultValue=""
+              placeholder="Bring ipad"
+              onChange={(e) => this.updatetitle(e.target.value)}
+              // onChange={(e) => this.updateContent(e.target.value)}
+              required />
             <button type="submit" id="submit-btn">Add</button>
             <p classtitle="error-message">please enter an item</p>
             <p classtitle="error-message">sorry, something went wrong</p>
 
 
             <h3>My list:</h3>
-            <input type="checkbox" title="item" value="passport" />
+            {this.newItems}
+            {/* <input type="checkbox" title="item" value="passport" />
             <label htmlFor="item">Bring ipad</label><br />
             <input type="checkbox" title="item" />
             <label htmlFor="item">Lorem ipsum dolor sit amet</label><br />
             <input type="checkbox" title="item" />
-            <label htmlFor="item">Lorem ipsum dolor sit amet</label><br />
+            <label htmlFor="item">Lorem ipsum dolor sit amet</label><br /> */}
           </form>
         </section>
       </div>

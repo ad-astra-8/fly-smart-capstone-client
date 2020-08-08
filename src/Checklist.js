@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import Navbar from "./Navbar";
 import Data from './Data';
 
-
-
-
 class Checklist extends Component {
     state = {
         items: [],
@@ -12,7 +9,22 @@ class Checklist extends Component {
             0: true,
             1: false,
         }
+
     };
+
+    componentDidMount() {
+        let getCollectionByUserId = `https://fly-smart-api.herokuapp.com/api/checklist`;
+        //  ${TokenService.getUserId()};
+
+        fetch(getCollectionByUserId)
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({
+                    items: data,
+                });
+            })
+            .catch((error) => console.log(error));
+    }
 
 
     onChange = event => {
@@ -23,15 +35,16 @@ class Checklist extends Component {
     };
 
     onCheckItem = (index, item) => {
-        const checklist = Data.map((item, index) => {
-            console.log('handle check item called', { item })
-            this.setState(state => ({
-                completed: { ...state.completed, [index]: !state.completed[index] }
-            }));
-            // this.setState({
-            //     completed: !this.state.completed
-            // })
-        });
+        console.log('handle check item called', { item })
+        let { completed } = this.state;
+        // completed[index] = !completed[index]; 
+        completed = !completed;
+        this.setState(state => ({
+            completed: { ...state.completed, [index]: !state.completed[index] }
+        }));
+        // this.setState({
+        //     completed: !this.state.completed
+        // })
     }
 
     render() {
@@ -46,9 +59,9 @@ class Checklist extends Component {
                                 : ""
                         }}
                         key={index}>
-                        <input id="chk" type="checkbox" name="data" onChange={() => this.onCheckItem(index)} />
-                   
-                    <label htmlFor="item">{item.title}</label>
+                        <input id="chk" type="checkbox" name="item" onChange={() => this.onCheckItem(index, item)} />
+
+                        <label htmlFor="item">{item.title}</label>
                     </li>
                 </ul>
             );
