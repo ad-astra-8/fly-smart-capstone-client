@@ -71,8 +71,8 @@ class Register extends Component {
     return (
       <section className="register-component">
         <div className="login-div">
-          <h1 class="title">Fly Smart</h1>
-          <h2 class="subtitle">Create your account!</h2>
+          <h1 className="title">Fly Smart</h1>
+          <h2 className="subtitle">Create your account!</h2>
           <div className="form-div">
             <form className="register-form" onSubmit={this.handleSubmit}>
               {errorMessage}

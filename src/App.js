@@ -2,72 +2,63 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingPage from "./LandingPage";
 import HomePage from "./HomePage";
-import Mylist from "./Mylist";
+import MyListForm from "./MyListForm";
 import Checklist from "./Checklist";
 // import Login from './Login';
 import Register from './Register';
 // import Data from './Data';
+import MyList from './MyList';
 
 
 class App extends Component {
-  //   state = {
-  //     data: [],
-  //     // mylist: []
-  //   };
+  state = {
+    tasks: ['task 1', 'task 2', 'task 3']
+  };
 
-  // componentDidMount() {
-  //   fetch("http://localhost:3000/")
-  //     // if the api returns data ...
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         throw new Error("Something went wrong, please try again later.");
-  //       }
-  //       // ... convert it to json
-  //       return res.json();
-  //     })
-  //     // use the json api output
-  //     .then((data) => {
-  //       //check if there is meaningful data
+  handleSubmit = task => {
+    this.setState({ tasks: [...this.state.tasks, task] });
+  }
 
-  //       this.setState({
-  //         tabsProp: data,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //       // this.setState({
-  //       //     error: err.message
-  //       // })
-  //     });
-  // }
+  handleDelete = (index) => {
+    const newArr = [...this.state.tasks];
+    newArr.splice(index, 1);
+    this.setState({ tasks: newArr });
+  }
 
-  // renderContent() {
-  //   const currentTab = this.props.tabs.map((tab, index) => {
-  //     if (this.state.currentTabIndex === tab.note_folder_id) {
-
-  //       return (
-  //         <div key={index}>
-  //           <h2 className="content-title">{tab.name}</h2>
-  //           <div className="content"><p className="content-p">{tab.content}</p></div>
-  //         </div>
-  //       );
-  //     } else {
-
-  //       return null;
-  //     }
-
-  //   });
-  //   return currentTab;
-  // }
-
-
-  // updateNote = (note) => {
-  //   this.setState({
-  //     tabsProp: [...this.state.tabsProp, note],
-  //   });
-  // }
 
   render() {
+    console.log(this.state.tasks);
+
+    // const MyList = (props) => {
+    //   return (
+    //     <div className='card-header'>
+    //       <h1 className='card-header-title header'>
+    //         You have {this.props.numTodos} Todos
+    //   </h1>
+    //     </div>
+    //   )
+    // }
+
+
+    // const TodoList = (props) => {
+    //   const todos = props.tasks.map((todo, index) => {
+    //     return <Todo content={todo} key={index} id={index} onDelete={props.onDelete} />
+    //   })
+    //   return (
+    //     <div className='list-wrapper'>
+    //       {todos}
+    //     </div>
+    //   );
+    // }
+
+    // const Todo = (props) => {
+    //   return (
+    //     <div className='list-item'>
+    //       {props.content}
+    //       <button class="delete is-pulled-right" onClick={() => { props.onDelete(props.id) }}></button>
+    //     </div>
+    //   );
+    // }
 
     return (
       <div className="App">
@@ -78,23 +69,18 @@ class App extends Component {
               <Route exact path="/homepage" component={HomePage} />
               <Route path="/register" component={Register} />
               <Route path="/checklist" component={Checklist} />
-              <Route path="/my-list" component={Mylist} />
+              {/* <Route path="/my-list" component={Mylist} /> */}                
+              <Route
+                exact
+                path="/my-list" 
+                render={(props) => <MyListForm numTodos={this.state.tasks.length} tasks={this.state.tasks} onDelete={this.handleDelete} onFormSubmit={this.handleSubmit} />}
+                />
 
               {/* <Route
                 exact
-                path="/homepage"
-              //   render={(props) => <HomePage tabs={this.state.tabsProp} />}
+                path="/my-list"
+                render={(props) => <MyList numTodos={this.state.tasks.length} tasks={this.state.tasks} onDelete={this.handleDelete} onFormSubmit={this.handleSubmit} />}
               /> */}
-              {/* <Route path="/login" component={Login} /> */}
-              {/* <Route exact path="/forum"
-                render={(props) => (
-                  <Forum
-                    tabs={this.state.tabsProp}
-                    updateNote={this.updateNote}
-                  />
-                )}
-                /> */ }
-
             </Switch>
           </BrowserRouter>
 

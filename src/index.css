@@ -204,3 +204,17 @@ ol {
 .checklist-item {
   background-color: white;
 }
+
+.list-wrapper {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.delete {
+  border-radius: 60%;
+  height: 23px;
+  width: 25px;
+  padding: 5px;
+  background-color: #ccc;
+  color: white;
+}
