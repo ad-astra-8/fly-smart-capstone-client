@@ -7,13 +7,40 @@ import Checklist from "./Checklist";
 // import Login from './Login';
 import Register from './Register';
 // import Data from './Data';
-import MyList from './MyList';
+// import MyList from './MyList';
 
 
 class App extends Component {
   state = {
     tasks: ['task 1', 'task 2', 'task 3']
   };
+
+  componentDidMount() {
+    fetch("https://fly-smart-api.herokuapp.com/api/notes")
+      // if the api returns data ...
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something went wrong, please try again later.");
+        }
+        // ... convert it to json
+        return res.json();
+      })
+      // use the json api output
+      .then((data) => {
+        //check if there is meaningful data
+        
+        this.setState({
+          tabsProp: data,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        // this.setState({
+        //     error: err.message
+        // })
+      });
+  }
+
 
   handleSubmit = task => {
     this.setState({ tasks: [...this.state.tasks, task] });
@@ -29,36 +56,6 @@ class App extends Component {
   render() {
     console.log(this.state.tasks);
 
-    // const MyList = (props) => {
-    //   return (
-    //     <div className='card-header'>
-    //       <h1 className='card-header-title header'>
-    //         You have {this.props.numTodos} Todos
-    //   </h1>
-    //     </div>
-    //   )
-    // }
-
-
-    // const TodoList = (props) => {
-    //   const todos = props.tasks.map((todo, index) => {
-    //     return <Todo content={todo} key={index} id={index} onDelete={props.onDelete} />
-    //   })
-    //   return (
-    //     <div className='list-wrapper'>
-    //       {todos}
-    //     </div>
-    //   );
-    // }
-
-    // const Todo = (props) => {
-    //   return (
-    //     <div className='list-item'>
-    //       {props.content}
-    //       <button class="delete is-pulled-right" onClick={() => { props.onDelete(props.id) }}></button>
-    //     </div>
-    //   );
-    // }
 
     return (
       <div className="App">

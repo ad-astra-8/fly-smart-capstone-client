@@ -6,35 +6,56 @@ import MyList from "./MyList";
 class MyListForm extends Component {
   constructor(props){
     super(props)
-  this.state = { term: '' };
-  // state = {
-  //   items: [],
-  //   title: "",
-  //   // completed: false
-  // };
+  this.state = { note: '' };
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if(this.state.term === '') return;
-    this.props.onFormSubmit(this.state.term);
-    this.setState({ term: '' });
-  }
+    if(this.state.note === '') return;
+    this.props.onFormSubmit(this.state.note);
+    this.setState({ note: '' });
+  
+
+  const { note } = e.target;
+  // const note = {
+  //   note: note.value,
+  // };
+
+
+  const url = "https://fly-smart-api.herokuapp.com/api/notes";
+
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(note),
+    headers: {
+      "content-type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return res.json().then((error) => {
+          throw error;
+        });
+      }
+      return res.json();
+    })
+    .then((data) => {
+      this.props.updateNote(data);
+      alert('Post added!');
+      window.location = '/my-list'
+    })
+
+    .catch((error) => {
+      // this.setState({ appError: error });
+    });
+};
+
 
 
   render() {
     console.log(this.props.tasks);
     console.log(this.props.numTodos);
 
-    // const MyList = (props) => {
-    //   return(
-    //     <div className='card-header'>
-    //       <h1 className='card-header-title header'>
-    //         You have {this.props.numTodos} Todos
-    //       </h1>
-    //     </div>
-    //   )
-    // }
     
     return (
       <div>
@@ -47,13 +68,12 @@ class MyListForm extends Component {
           type='text'
           className='input'
           placeholder='Enter Item'
-          value={this.state.term}
-          onChange={(e) => this.setState({term: e.target.value})}
+          value={this.state.note}
+          onChange={(e) => this.setState({note: e.target.value})}
           required
         />
         <button className='button'>Submit</button>
         <MyList numTodos={this.props.tasks.length} onDelete={this.props.onDelete} tasks={this.props.tasks} onFormSubmit={this.props.handleSubmit} />
-
           </form>
         </section>
       </div>
