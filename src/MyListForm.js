@@ -6,7 +6,10 @@ import MyList from "./MyList";
 class MyListForm extends Component {
   constructor(props){
     super(props)
-  this.state = { note: '' };
+  this.state = { 
+    note: '',
+  //   completed 
+  };
   }
 
   handleSubmit = (e) => {
@@ -16,9 +19,10 @@ class MyListForm extends Component {
     this.setState({ note: '' });
   
 
-  const { note } = e.target;
+  const { note, completed } = e.target;
   // const note = {
   //   note: note.value,
+  //   completed : false,
   // };
 
 

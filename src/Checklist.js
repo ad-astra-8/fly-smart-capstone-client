@@ -36,7 +36,7 @@ class Checklist extends Component {
 
     onCheckItem = (index, item) => {
         console.log('handle check item called', { item })
-        let { completed } = this.state;
+        const { completed } = this.state;
         // completed[index] = !completed[index]; 
         completed = !completed;
         this.setState(state => ({
@@ -77,7 +77,6 @@ class Checklist extends Component {
 
                     <form>
                         <fieldset>
-                            {/* {!!this.state.data.length && this.renderContent()} */}
                             {checklist}
                             {/* 
                             <legend>All travelers: </legend><br />

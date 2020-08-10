@@ -30,8 +30,8 @@ class Register extends Component {
       .then(response => {
         registerUsername.value = ''
         registerPassword.value = ''
-        TokenService.saveAuthToken(response.authToken)
-        TokenService.saveUserId(response.id)
+        // TokenService.saveAuthToken(response.authToken)
+        // TokenService.saveUserId(response.id)
         window.location = '/homePage'
       })
 

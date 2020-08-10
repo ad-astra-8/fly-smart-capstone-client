@@ -40,7 +40,7 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('hello')
+    console.log('handleSubmit ran')
 
     const { loginUsername, loginPassword } = event.target
     console.log(loginUsername.value)
@@ -55,12 +55,13 @@ class Login extends Component {
       .then(response => {
         loginUsername.value = ''
         loginPassword.value = ''
-        TokenService.saveAuthToken(response.authToken)
-        TokenService.saveUserId(response.userId)
+        // TokenService.saveAuthToken(response.authToken)
+        // TokenService.saveUserId(response.userId)
         window.location = '/homepage'
-
+        console.log('logged in')
 
         // .then(response => {
+
         // })
 
 
