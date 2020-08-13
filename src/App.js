@@ -1,60 +1,84 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import config from './config';
 import LandingPage from "./LandingPage";
 import HomePage from "./HomePage";
-import MyListForm from "./MyListForm";
+import MyNoteForm from "./MyNoteForm";
 import Checklist from "./Checklist";
 // import Login from './Login';
 import Register from './Register';
 // import Data from './Data';
-// import MyList from './MyList';
+// import MyNotes from './MyNotes';
 
 
 class App extends Component {
   state = {
-    tasks: ['task 1', 'task 2', 'task 3']
+    // notes: ['note 1', 'note 2', 'note 3']
+		notes: []
   };
 
-  componentDidMount() {
-    fetch("https://fly-smart-api.herokuapp.com/api/notes")
-      // if the api returns data ...
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Something went wrong, please try again later.");
-        }
-        // ... convert it to json
-        return res.json();
-      })
-      // use the json api output
-      .then((data) => {
-        //check if there is meaningful data
+  // componentDidMount() {
+  //   fetch("https://fly-smart-api.herokuapp.com/api/notes")
+  //     // if the api returns data ...
+  //     .then((res) => {
+  //       if (!res.ok) {
+  //         throw new Error("Something went wrong, please try again later.");
+  //       }
+  //       // ... convert it to json
+  //       return res.json();
+  //     })
+  //     // use the json api output
+  //     .then((data) => {
+  //       //check if there is meaningful data
         
-        this.setState({
-          tabsProp: data,
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-        // this.setState({
-        //     error: err.message
-        // })
-      });
-  }
+  //       this.setState({
+  //         tabsProp: data,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       // this.setState({
+  //       //     error: err.message
+  //       // })
+  //     });
+  // }
+  componentDidMount() {
+		Promise.all([
+			fetch(`${config.API_ENDPOINT}/notes`)
+		])
+			.then(([notesRes]) => {
+				if (!notesRes.ok)
+					return notesRes.json().then(e => Promise.reject(e));
 
+				return Promise.all([notesRes.json()]);
+			})
+			.then(([notes]) => {
+				this.setState({notes});
+			})
+			.catch(error => {
+				console.error({error});
+			});
+	}
 
-  handleSubmit = task => {
-    this.setState({ tasks: [...this.state.tasks, task] });
+  handleAddNote = note => {
+    this.setState({ notes: [...this.state.notes, note] });
   }
 
   handleDelete = (index) => {
-    const newArr = [...this.state.tasks];
+    const newArr = [...this.state.notes];
     newArr.splice(index, 1);
-    this.setState({ tasks: newArr });
+    this.setState({ notes: newArr });
   }
 
 
   render() {
-    console.log(this.state.tasks);
+    console.log(this.state.notes);
+		const value = {
+				notes: this.state.notes,
+				deleteNote: this.handleDelete,
+				addNote: this.handleAddNote
+		};
+
 
 
     return (
@@ -70,13 +94,13 @@ class App extends Component {
               <Route
                 exact
                 path="/my-list" 
-                render={(props) => <MyListForm numTodos={this.state.tasks.length} tasks={this.state.tasks} onDelete={this.handleDelete} onFormSubmit={this.handleSubmit} />}
+                render={(props) => <MyNoteForm numTodos={this.state.notes.length} notes={this.state.notes} onDelete={this.handleDelete} onFormSubmit={this.handleAddNote} />}
                 />
 
               {/* <Route
                 exact
                 path="/my-list"
-                render={(props) => <MyList numTodos={this.state.tasks.length} tasks={this.state.tasks} onDelete={this.handleDelete} onFormSubmit={this.handleSubmit} />}
+                render={(props) => <MyList numTodos={this.state.notes.length} notes={this.state.notes} onDelete={this.handleDelete} onFormSubmit={this.handleAddNote} />}
               /> */}
             </Switch>
           </BrowserRouter>
