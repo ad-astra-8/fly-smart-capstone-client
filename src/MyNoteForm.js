@@ -28,9 +28,10 @@ class MyNoteForm extends Component {
     // this.setState({ note: '' });
 
     const note = {
-      note: e.target['note'].value,
-      completed: e.target['completed'].value,
+      note: this.state.note,
+      completed: false,
     }
+      console.log(note)
 
     // const { note, completed } = e.target;
     // const note = {
@@ -86,7 +87,7 @@ class MyNoteForm extends Component {
               type='text'
               className='input'
               placeholder='Enter Item'
-              // value={this.state.note}
+              value={this.state.note}
               name="note"
               id="note"
               onChange={(e) => this.setState({ note: e.target.value })}
