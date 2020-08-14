@@ -64,18 +64,23 @@ class App extends Component {
     this.setState({ notes: [...this.state.notes, note] });
   }
 
-  handleDelete = (index) => {
-    const newArr = [...this.state.notes];
-    newArr.splice(index, 1);
-    this.setState({ notes: newArr });
-  }
+  // handleDelete = (index) => {
+  //   const newArr = [...this.state.notes];
+  //   newArr.splice(index, 1);
+  //   this.setState({ notes: newArr });
+  // }
 
+	handleDeleteNote = noteId => {
+    this.setState({
+        notes: this.state.notes.filter(note => note.id !== noteId)
+    });
+};
 
   render() {
     console.log(this.state.notes);
 		const value = {
 				notes: this.state.notes,
-				deleteNote: this.handleDelete,
+				deleteNote: this.handleDeleteNote,
 				addNote: this.handleAddNote
 		};
 
@@ -94,7 +99,7 @@ class App extends Component {
               <Route
                 exact
                 path="/my-list" 
-                render={(props) => <MyNoteForm numTodos={this.state.notes.length} notes={this.state.notes} onDelete={this.handleDelete} onFormSubmit={this.handleAddNote} />}
+                render={(props) => <MyNoteForm numTodos={this.state.notes.length} notes={this.state.notes} onDelete={this.handleDeleteNote} onFormSubmit={this.handleAddNote} />}
                 />
 
               {/* <Route

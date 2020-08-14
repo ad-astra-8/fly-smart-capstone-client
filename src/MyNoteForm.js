@@ -14,18 +14,9 @@ class MyNoteForm extends Component {
     };
   }
 
-  // handleAddNote = note => {
-	// 	// console.log(note)
-	// 		this.setState({
-	// 				notes: [...this.state.notes, note]
-	// 		})
-  // }
   
   handleSubmit = (e) => {
     e.preventDefault();
-    // if (this.state.note === '') return;
-    // this.props.onFormSubmit(this.state.note);
-    // this.setState({ note: '' });
 
     const note = {
       note: this.state.note,
@@ -33,17 +24,7 @@ class MyNoteForm extends Component {
     }
       console.log(note)
 
-    // const { note, completed } = e.target;
-    // const note = {
-    //   note: note.value,
-    //   completed : false,
-    // };
-
-
-    // const url = "https://fly-smart-api.herokuapp.com/api/notes";
-
     fetch(`${config.API_ENDPOINT}/notes`,
-    // fetch(url,
       {
 				method: 'POST',
 				headers: { 'content-type': 'application/json' },
@@ -57,7 +38,6 @@ class MyNoteForm extends Component {
       })
       
       .then((note) => {
-        console.log(note)
         this.props.addNote(note);
         alert('Post added!');
         // this.props.history.push(`/my-list`)
