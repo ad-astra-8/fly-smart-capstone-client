@@ -32,7 +32,8 @@ class MyNotes extends Component {
       }
     
     render() {
-            console.log(this.props.notes);    
+            console.log(this.props.notes);   
+            console.log(this.props.noteId) 
             const { note, id } = this.props;
 
 

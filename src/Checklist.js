@@ -2,30 +2,20 @@ import React, { Component } from 'react';
 import Navbar from "./Navbar";
 import Data from './Data';
 
+
 class Checklist extends Component {
-    state = {
-        items: [],
-        completed: {
-            0: true,
-            1: false,
-        }
+    constructor(props) {
+        super(props);
+        this.state = {
+            checklist: [],
+            // item: {id: 1, item: 'somethg', completed: false},
+            completed: {
+                0: true,
+                1: false
+            }
+        };
 
-    };
-
-    componentDidMount() {
-        let getCollectionByUserId = `https://fly-smart-api.herokuapp.com/api/checklist`;
-        //  ${TokenService.getUserId()};
-
-        fetch(getCollectionByUserId)
-            .then((response) => response.json())
-            .then((data) => {
-                this.setState({
-                    items: data,
-                });
-            })
-            .catch((error) => console.log(error));
     }
-
 
     onChange = event => {
         const { value, items } = event.target
@@ -47,38 +37,67 @@ class Checklist extends Component {
         // })
     }
 
-    render() {
+    componentDidMount() {
 
-        const checklist = Data.map((item, index) => {
-            return (
-                <ul className="checklist-item">
-                    <li
-                        style={{
-                            textDecoration: this.state.completed[index]
-                                ? "line-through"
-                                : ""
-                        }}
-                        key={index}>
-                        <input id="chk" type="checkbox" name="item" onChange={() => this.onCheckItem(index, item)} />
+        // const item = {
+        //     id: this.state.id,
+        //     item: this.state.item,
+        //     completed: false,
+        // }
 
-                        <label htmlFor="item">{item.title}</label>
-                    </li>
-                </ul>
-            );
-        });
 
+        let getCollectionByUserId = `https://fly-smart-api.herokuapp.com/api/checklist`;
+        //  ${TokenService.getUserId()};
+
+        fetch(getCollectionByUserId)
+            .then((response) => response.json())
+                // console.log(response)
+            .then((data) => {
+                console.log(data)
+                this.setState({
+                    checklist: data,
+                });
+            })
+            .catch((error) => console.log(error));
+    }
+
+
+
+
+render() {
+
+    const myChecklist = this.state.checklist.map(({item}, index) => {
+        console.log(this.state.checklist);
 
         return (
-            <div>
-                <section className="checklist">
-                    <Navbar />
-                    <h2 className="">Checklist</h2>
-                    <h3>Check what you have ready to pack:</h3>
+            <ul className="checklist-item">
+                <li
+                    style={{
+                        textDecoration: this.state.completed[index]
+                            ? "line-through"
+                            : ""
+                    }}
+                    key={index}>
+                    <input id="chk" type="checkbox" name="item" onChange={() => this.onCheckItem(index, item)} />
 
-                    <form>
-                        <fieldset>
-                            {checklist}
-                            {/* 
+                    <label htmlFor="item">{item}</label>
+                </li>
+            </ul>
+        );
+    });
+
+
+    return (
+        <div>
+            <section className="checklist">
+                <Navbar />
+                <h2 className="">Checklist</h2>
+                <h3>Check what you have ready to pack:</h3>
+
+                <form>
+                    <fieldset>
+                        {myChecklist}
+                        {/* 
                             <legend>All travelers: </legend><br />
                             <input type="checkbox" name="item" value="passport" completed />
                             <label htmlFor="item"> I have my passport</label><br />
@@ -86,9 +105,9 @@ class Checklist extends Component {
                             <label htmlFor="item-2"> I have my 3 oz hand sanitizer</label><br />
                             <input type="checkbox" name="item-3" value="visa" />
                             <label htmlFor="item-3"> I have my visa</label><br /> */}
-                        </fieldset>
+                    </fieldset>
 
-                        {/* <fieldset>
+                    {/* <fieldset>
                             <legend>Travelers with babies: </legend><br />
                             <input type="checkbox" name="item-1" value="pacifier" />
                             <label htmlFor="item-1"> I have the pacifier</label><br />
@@ -118,11 +137,11 @@ class Checklist extends Component {
                             <input type="checkbox" name="item-3" value="visa" />
                             <label htmlFor="item-3"> I have hotel info</label><br />
                         </fieldset> */}
-                    </form>
-                </section>
-            </div >
-        );
-    }
+                </form>
+            </section>
+        </div >
+    );
+}
 
 }
 

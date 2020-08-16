@@ -64,17 +64,17 @@ class App extends Component {
     this.setState({ notes: [...this.state.notes, note] });
   }
 
-  // handleDelete = (index) => {
-  //   const newArr = [...this.state.notes];
-  //   newArr.splice(index, 1);
-  //   this.setState({ notes: newArr });
-  // }
+  handleDelete = (index) => {
+    const newArr = [...this.state.notes];
+    newArr.splice(index, 1);
+    this.setState({ notes: newArr });
+  }
 
-	handleDeleteNote = noteId => {
-    this.setState({
-        notes: this.state.notes.filter(note => note.id !== noteId)
-    });
-};
+// 	handleDeleteNote = noteId => {
+//     this.setState({
+//         notes: this.state.notes.filter(note => note.id !== noteId)
+//     });
+// };
 
   render() {
     console.log(this.state.notes);
@@ -82,9 +82,14 @@ class App extends Component {
 				notes: this.state.notes,
 				deleteNote: this.handleDeleteNote,
 				addNote: this.handleAddNote
-		};
+    };
+    
+    const noteId = this.state.notes.map((note, index) => {
+      console.log(index);
 
-
+return {index}
+    })
+console.log(noteId);
 
     return (
       <div className="App">
@@ -99,7 +104,7 @@ class App extends Component {
               <Route
                 exact
                 path="/my-list" 
-                render={(props) => <MyNoteForm numTodos={this.state.notes.length} notes={this.state.notes} onDelete={this.handleDeleteNote} onFormSubmit={this.handleAddNote} />}
+                render={(props) => <MyNoteForm noteId={noteId} numTodos={this.state.notes.length} notes={this.state.notes} onDelete={this.handleDeleteNote} onFormSubmit={this.handleAddNote} />}
                 />
 
               {/* <Route

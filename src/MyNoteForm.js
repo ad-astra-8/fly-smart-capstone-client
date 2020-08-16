@@ -14,7 +14,7 @@ class MyNoteForm extends Component {
     };
   }
 
-  
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -22,26 +22,26 @@ class MyNoteForm extends Component {
       note: this.state.note,
       completed: false,
     }
-      console.log(note)
+    console.log(note)
 
     fetch(`${config.API_ENDPOINT}/notes`,
       {
-				method: 'POST',
-				headers: { 'content-type': 'application/json' },
-				body: JSON.stringify(note),
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(note),
       })
-      
+
       .then(res => {
-				if (!res.ok)
-					return res.json().then(e => Promise.reject(e))
-				return res.json()
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
+        return res.json()
       })
-      
+
       .then((note) => {
-        this.props.addNote(note);
-        alert('Post added!');
-        // this.props.history.push(`/my-list`)
+        // alert('Post added!');
         window.location = '/my-list'
+        this.props.addNote(note);
+        // this.props.history.push(`/my-list`)
       })
 
       .catch((error) => {
@@ -53,8 +53,6 @@ class MyNoteForm extends Component {
 
   render() {
     console.log(this.props.notes);
-    console.log(this.props.numTodos);
-
 
     return (
       <div>
@@ -75,7 +73,7 @@ class MyNoteForm extends Component {
               required
             />
             <button className='button'>Submit</button>
-            <MyNotes numTodos={this.props.notes.length} onDelete={this.props.onDelete} notes={this.props.notes} onFormSubmit={this.props.handleSubmit}/>
+            <MyNotes numTodos={this.props.notes.length} onDelete={this.props.onDelete} notes={this.props.notes} onFormSubmit={this.props.handleSubmit} />
           </form>
         </section>
       </div>
