@@ -69,31 +69,31 @@ class Register extends Component {
       );
 
     return (
-      <section className="register-component">
+      <section className="login-component">
         <div className="login-div">
-          <h1 className="title">Fly Smart</h1>
+          <h1 className="login-title">Fly Smart</h1>
           <h2 className="subtitle">Create your account!</h2>
           <div className="form-div">
-            <form className="register-form" onSubmit={this.handleSubmit}>
+            <form className="login-form" onSubmit={this.handleSubmit}>
               {errorMessage}
               <label htmlFor="enter-username">Enter Username:</label>
               <input
-                className="register-input"
+                className="login-input"
                 type="text"
                 name="registerUsername"
                 placeholder="my.username@ymail.com"
                 required
               />
-              <p className="error-message">please enter a valid username</p>
+              {/* <p className="error-message">please enter a valid username</p> */}
               <label htmlFor="enter-password">Enter Password:</label>
               <input
-                className="register-input"
+                className="login-input"
                 type="password"
                 name="registerPassword"
                 placeholder="password"
                 required
               />
-              <p className="error-message">please enter a valid password</p>
+              {/* <p className="error-message">please enter a valid password</p> */}
               <button type="submit" className="login-button">
                 Register
               </button>

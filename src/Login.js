@@ -78,7 +78,7 @@ class Login extends Component {
     return (
       <section className="login-component">
         <div className="login-div">
-          <h1 className="title">Fly Smart</h1>
+          <h1 className="login-title">Fly Smart</h1>
           <h2 className="subtitle">Log in!</h2>
           <div className="form-div">
             <form className="login-form" onSubmit={this.handleSubmit}>
@@ -91,7 +91,7 @@ class Login extends Component {
                 placeholder="my.username@ymail.com"
                 required
               />
-              <p className="error-message">username is not valid, please try again</p>
+              {/* <p className="error-message">username is not valid, please try again</p> */}
 
               <label htmlFor="loginPassword">Password: Newpassword1</label>
               <input
@@ -101,7 +101,7 @@ class Login extends Component {
                 placeholder="Password"
                 required
               />
-              <p className="error-message">password is not valid, please try again</p>
+              {/* <p className="error-message">password is not valid, please try again</p> */}
 
               <button type="submit" className="login-button">
                 Login

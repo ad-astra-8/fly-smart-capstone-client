@@ -21,8 +21,6 @@ class Navbar extends Component {
       <header className="Navbar">
         <nav>
           <ul className="nav-container">            
-
-
             <NavLink to="/homepage" className="nav-link"><li>Home</li></NavLink>
             <NavLink to="/checklist" className="nav-link"><li>Check</li></NavLink>
             <NavLink to="/my-list" className="nav-link"><li>List</li></NavLink>
