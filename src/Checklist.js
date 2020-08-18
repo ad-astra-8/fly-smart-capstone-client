@@ -10,8 +10,6 @@ class Checklist extends Component {
         super(props);
         this.state = {
             checklist: [],
-            // completed: { 0: true, 1: false}
-            completed: false
 
         };
 
@@ -24,60 +22,58 @@ class Checklist extends Component {
     //     })
     // };
 
-    // onCheckItem = (index, item, completed) => {
-    //     console.log(item, this.state.completed)
-    //     this.setState(state => ({
-    //         completed: { ...state.completed, [index]: !state.completed[index] }
-    //     }));
-    // }
-
-    handleCompleted = (index, item, completed) => {
+    onCheckItem = (index, item, completed) => {
         console.log(item, this.state.completed)
         this.setState(state => ({
-          completed: { ...state.completed, [index]: !state.completed[index] }
+            completed: { ...state.completed, [index]: !state.completed[index] }
         }));
-      }
-    
+    }
 
-    handleCheck = (e) => {
-        console.log(`handlecheck ran`)
-    
-        const item_id = this.state.checklist.map((item, index) => {
-          console.log(index);
-          if ([item.index] == index) {
-            return index
-          }
+    handleCompleted = (item, completed) => {
+        this.setState({
+            completed: !this.state.completed
+        });
+    }
+
+    handleCheck = (id, item, event) => {
+        console.log(`handlecheck ran, ${JSON.stringify(item)} ${JSON.stringify(id)}`)
+
+        const body = { id, item: item.item, completed: event ? 1 : 0 }
+        fetch(`${config.API_ENDPOINT}/checklist/${id}`, {
+            method: 'PATCH',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(body),
         })
-        console.log(item_id)
-    
-    
-        fetch(`${config.API_ENDPOINT}/checklist/${item_id}`, {
-          method: 'PATCH',
-          headers: { 'content-type': 'application/json' },
-        })
-          .then(res => {
-            if (!res.ok)
-              return res.json().then(e => Promise.reject(e))
-          })
-          .then(() => {
-            console.log(item_id)
-            this.setState({
-              completed : !this.state.completed
-            });
-                // // allow parent to perform extra behaviour
-            // this.props.completedItem(checklistId)
-          })
-          .catch(error => {
-            console.error({ error })
-          })
-      }
-    
+            .then(res => {
+                if (!res.ok)
+                    return res.json().then(e => Promise.reject(e))
+            })
+            .then(() => {
+                this.setState({
+                    completed: !this.state.completed
+                });
+                let getCollectionByUserId = `${config.API_ENDPOINT}/checklist`;
+                //  ${TokenService.getUserId()};
+                fetch(getCollectionByUserId)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data)
+                        this.setState({
+                            checklist: data,
+                        });
+                    })
+                    .catch((error) => console.log(error));
+            })
+            .catch(error => {
+                console.error({ error })
+            })
+    }
+
 
 
     componentDidMount() {
-        let getCollectionByUserId = `https://fly-smart-api.herokuapp.com/api/checklist`;
+        let getCollectionByUserId = `${config.API_ENDPOINT}/checklist`;
         //  ${TokenService.getUserId()};
-
         fetch(getCollectionByUserId)
             .then((response) => response.json())
             .then((data) => {
@@ -89,35 +85,31 @@ class Checklist extends Component {
             .catch((error) => console.log(error));
     }
 
-
-
-
     render() {
-
-        console.log(this.props.checklist)
-        // console.log(this.props.myChecklist);
-        // console.log(this.checklistId)
-
-
-        const myChecklist = this.state.checklist.map(({ item }, index) => {
-            // console.log(this.state.checklist);
+        console.log(this.state.item);
+        // console.log(item);
+        const myChecklist = this.state.checklist.sort(function (a, b) { return a.id - b.id }
+        ).map((item, index) => {
+            console.log(item);
             return (
-                <li 
-                className="checklist-item"
-                  style={{
-                    textDecoration: this.state.completed[index]
-                      ? "line-through"
-                      : ""
-                  }}
-                  key={index}
-                  >
-                  <input className="checklist-input" id={index} type="checkbox" name="item" value={this.state.completed} onChange={() => this.handleCompleted(index, item)} onClick={() => this.handleCheck(index, item)} />
-                  <label className="checklist-label" htmlFor="item">{item}</label>
+                <li
+                    className="checklist-item"
+                    style={{
+                        textDecoration: item.completed === 1
+                            ? "line-through"
+                            : ""
+                    }}
+                    // if(item.completed == 0) {"checked"}
+                    key={item.id}
+                    checked
+                >
+                    <input className="checklist-input" id={item.id} type="checkbox" name="item" value={item.completed} onChange={() => this.handleCompleted(item.id, item)} onClick={(event) => this.handleCheck(item.id, item, this.checked)} />
+                    <label className="checklist-label" htmlFor="item">{item.item}</label>
                 </li>
             );
-          });
-      
-      
+        });
+
+
         return (
             <div>
                 <section className="checklist">
@@ -127,7 +119,7 @@ class Checklist extends Component {
 
                     <form className="checklist-form">
                         <ul className="checklist-container">
-                        {myChecklist}
+                            {myChecklist}
                         </ul>
                     </form>
                 </section>

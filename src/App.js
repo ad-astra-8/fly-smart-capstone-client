@@ -112,7 +112,7 @@ class App extends Component {
   // };
 
   render() {
-    console.log(this.state.notes);
+    // console.log(this.state.notes);
 
     const value = {
       notes: this.state.notes,
@@ -122,7 +122,7 @@ class App extends Component {
     };
 
     const noteId = this.state.notes.map((note, index) => {
-      console.log(index);
+      // console.log(index);
       return { index }
     })
     console.log(noteId);
