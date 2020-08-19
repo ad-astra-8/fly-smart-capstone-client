@@ -10,7 +10,7 @@ class MyNoteForm extends Component {
     super(props)
     this.state = {
       note: '',
-      completed: false
+      completed: 0
     };
   }
 
@@ -20,7 +20,7 @@ class MyNoteForm extends Component {
 
     const note = {
       note: this.state.note,
-      completed: false,
+      completed: 0 ,
     }
     console.log(note)
 
