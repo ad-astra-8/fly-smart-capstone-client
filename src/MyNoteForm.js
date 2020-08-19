@@ -45,7 +45,7 @@ class MyNoteForm extends Component {
       })
 
       .catch((error) => {
-        // this.setState({ appError: error });
+        console.error({ error })
       });
   };
 

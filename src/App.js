@@ -45,7 +45,7 @@ class App extends Component {
     fetch(getCollectionByUserId)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
+        // console.log(data)
         this.setState({
           checklist: data,
         });

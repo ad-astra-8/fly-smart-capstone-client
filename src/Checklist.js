@@ -10,48 +10,73 @@ class Checklist extends Component {
         super(props);
         this.state = {
             checklist: [],
-
+            currentItemId: ""
         };
 
     }
 
-    // onChange = event => {
-    //     const { value, completed } = event.target
-    //     this.setState({
-    //         [completed]: value
-    //     })
-    // };
 
-    onCheckItem = (index, item, completed) => {
-        console.log(item, this.state.completed)
-        this.setState(state => ({
-            completed: { ...state.completed, [index]: !state.completed[index] }
-        }));
-    }
-
-    handleCompleted = (item, completed) => {
+    checkItem = (id) => {
+        console.log(`checkItem ran`);
         this.setState({
-            completed: !this.state.completed
-        });
+            checklist: this.state.checklist.map(item => {
+                if (item.id === id) {
+                    //suppose to update 
+                    return {
+                        ...item,
+                        completed: !item.completed
+                    };
+                } else {
+                    return item;
+                }
+            })
+        })
     }
 
-    handleCheck = (id, item, event) => {
-        console.log(`handlecheck ran, ${JSON.stringify(item)} ${JSON.stringify(id)}`)
+    handleCurrentItemClick = (id) => {
+        this.setState({ currentItemId: id });
+        console.log(`${id} is current id`);
+    };
 
-        const body = { id, item: item.item, completed: event ? 1 : 0 }
+
+
+    onClick = (event) => {
+        const id = event.target.getAttribute("id");
+        console.log(id);
+        return id
+    }
+
+
+    handleCheck = (event) => {
+        console.log(`handlecheck fetch`);
+        // console.log(`handlecheck ran, ${JSON.stringify(item)} `)
+
+        // const body = { id, item: item.item, completed: event ? 1 : 0 }
+        const id = event.target.id;
+
+        console.log(id);
+
+        const item = {
+            id: this.id,
+            item: this.state.item,
+            completed: 0,
+        }
+
+
         fetch(`${config.API_ENDPOINT}/checklist/${id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(body),
+            body: JSON.stringify(item),
         })
             .then(res => {
                 if (!res.ok)
                     return res.json().then(e => Promise.reject(e))
             })
-            .then(() => {
-                this.setState({
-                    completed: !this.state.completed
-                });
+
+            .then((item) => {
+
+                this.handleCheck(this.id);
+
                 let getCollectionByUserId = `${config.API_ENDPOINT}/checklist`;
                 //  ${TokenService.getUserId()};
                 fetch(getCollectionByUserId)
@@ -86,16 +111,15 @@ class Checklist extends Component {
     }
 
     render() {
-        console.log(this.state.item);
-        // console.log(item);
         const myChecklist = this.state.checklist.sort(function (a, b) { return a.id - b.id }
         ).map((item, index) => {
             console.log(item);
+            console.log(item.id);
             return (
                 <li
                     className="checklist-item"
                     style={{
-                        textDecoration: item.completed === 1
+                        textDecoration: item.completed
                             ? "line-through"
                             : ""
                     }}
@@ -103,8 +127,20 @@ class Checklist extends Component {
                     key={item.id}
                     checked
                 >
-                    <input className="checklist-input" id={item.id} type="checkbox" name="item" value={item.completed} onChange={() => this.handleCompleted(item.id, item)} onClick={(event) => this.handleCheck(item.id, item, this.checked)} />
-                    <label className="checklist-label" htmlFor="item">{item.item}</label>
+                    <input
+                        className="checklist-input"
+                        id={item.id}
+                        type="checkbox"
+                        name="item"
+                        value={this.state.item}
+                        // onChange={(event) => this.handleChange(item.id, item)}
+                        onClick={(event, id) => this.checkItem(item.id, item, this.checked)}
+                        // onClick={(event, id) => this.handleCheck(item.id)}
+                        onChange={this.onClick}
+                    />
+                    <label
+                        className="checklist-label"
+                        htmlFor="item">{item.item}</label>
                 </li>
             );
         });
@@ -112,12 +148,14 @@ class Checklist extends Component {
 
         return (
             <div>
+                <Navbar />
                 <section className="checklist">
-                    <Navbar />
                     <h2 className="">Checklist</h2>
                     <h3>Check what you have ready to pack:</h3>
 
-                    <form className="checklist-form">
+                    <form className="checklist-form"
+                        onClick={(event, id) => this.handleCheck(id)}
+                    >
                         <ul className="checklist-container">
                             {myChecklist}
                         </ul>

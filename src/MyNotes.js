@@ -38,23 +38,25 @@ class MyNotes extends Component {
 
         const myNotes = this.props.notes.map(({note}, index) => {
             return (
-                <div className='list-wrapper' key={index} >
-                    <ul>
-                        <li>{note}</li>
-                        <button className="delete" name="completed" onClick={() => { this.props.onDelete(this.props.id) }} onClick={this.handleClickDelete}>X</button>
+                    <ul className="form-wrapper" key={index}>
+                        <button 
+                        className="delete" 
+                        name="completed" 
+                        onClick={() => { this.props.onDelete(this.props.id) }} 
+                        onClick={this.handleClickDelete}
+                        >
+                         X
+                        </button> 
+                        <p className="my-notes">{note}</p>
                     </ul>
-
-                </div>
             )
         })
 
         return (
-            <section>
                 <div className='card-header'>
                 <h1 className='card-header-title'>You have {this.props.numTodos} notes on your list</h1>
                     {myNotes}
                 </div>
-            </section>
         );
 
         
