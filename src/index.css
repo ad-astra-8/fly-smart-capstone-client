@@ -182,9 +182,6 @@ background-color: rgb(202, 5, 5);
  padding-bottom: 40px;
 }
 
-h3 {
-  padding-top: 40px;
-}
 
 /* form {
   background-color: black;
@@ -387,6 +384,23 @@ padding-left: 10px;
 .delete:hover {
   color: rgb(202, 5, 5);
   background-color: white;
+}
+
+
+.web-resources{
+  color: black;
+  }
+  
+.web-resources:hover {
+  color: rgb(202, 5, 5);
+  }
+
+.reactplayer {
+  margin-top: 40px;
+}
+  
+.reactplayer:hover {
+  box-shadow: 2px 2px 5px rgb(202, 5, 5);;
 }
 /* -------------------------------------
 Footer styles (Main Module)
