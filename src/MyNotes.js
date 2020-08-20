@@ -38,11 +38,11 @@ class MyNotes extends Component {
   }
 
   render() {
-    console.log(this.props.notes);
+    // console.log(this.props.notes);
     const { note, id } = this.props;
 
     const myNotes = this.props.notes.map((note, index) => {
-      console.log(note.id);
+      // console.log(note.id);
       return (
         <li 
           className="my-notes"
@@ -52,8 +52,7 @@ class MyNotes extends Component {
             className="delete"
             type='button'
             name="completed"
-            onClick={this.handleClickDelete(note.id)}
-            // onClick={this.handleClickDelete}
+            onClick={(event, id) => this.handleClickDelete(note.id)}
           >
           X
           </button>
