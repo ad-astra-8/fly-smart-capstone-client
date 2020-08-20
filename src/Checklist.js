@@ -136,8 +136,8 @@ class Checklist extends Component {
                         value={item.id}
                         // onChange={(event) => this.handleChange(item.id, item)}
                         onClick={(event, id) => this.checkItem(item.id)}
-                        onClick={(event, id) => this.handleCheck(item.id)}
-                        onChange={this.onClick}
+                        // onClick={(event, id) => this.handleCheck(item.id)}
+                        // onChange={this.onClick}
                     />
                     <label
                         className="checklist-label"

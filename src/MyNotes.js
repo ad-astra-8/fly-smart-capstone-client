@@ -4,35 +4,37 @@ import config from './config';
 
 class MyNotes extends Component {
 
-  handleClickDelete = (e) => {
-    e.preventDefault();
+  handleClickDelete = (id) => {
+        // e.preventDefault();
 
-    const note = {
-      note: this.state.note,
-      completed: 0 ,
-    }
-    console.log(note)
+    console.log(`NOTE ID: ${id}`);
+
+    // const note = {
+    //   note: this.state.note,
+    //   completed: 0 ,
+    // }
+    // console.log(note)
 
 
 
-    fetch(`${config.API_ENDPOINT}/notes/${note.id}`, {
-      method: 'DELETE',
-      headers: {
-        'content-type': 'application/json'
-      },
-    })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-      })
-      .then(() => {
-        this.props.deleteNote(note.id);
-        // allow parent to perform extra behaviour
-        this.props.onDelete(note.id)
-      })
-      .catch(error => {
-        console.error({ error })
-      })
+    // fetch(`${config.API_ENDPOINT}/notes/${note.id}`, {
+    //   method: 'DELETE',
+    //   headers: {
+    //     'content-type': 'application/json'
+    //   },
+    // })
+    //   .then(res => {
+    //     if (!res.ok)
+    //       return res.json().then(e => Promise.reject(e))
+    //   })
+    //   .then(() => {
+    //     this.props.deleteNote(note.id);
+    //     // allow parent to perform extra behaviour
+    //     this.props.onDelete(note.id)
+    //   })
+    //   .catch(error => {
+    //     console.error({ error })
+    //   })
   }
 
   render() {
@@ -50,8 +52,8 @@ class MyNotes extends Component {
             className="delete"
             type='button'
             name="completed"
-            // onClick={() => { this.props.onDelete(this.props.id) }}
-            onClick={this.handleClickDelete}
+            onClick={this.handleClickDelete(note.id)}
+            // onClick={this.handleClickDelete}
           >
           X
           </button>

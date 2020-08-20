@@ -73,7 +73,7 @@ class MyNoteForm extends Component {
               required
             />
             <button className='button'>Submit</button>
-            <MyNotes numTodos={this.props.notes.length} onDelete={this.props.onDelete} notes={this.props.notes} noteId={this.props.noteId} onFormSubmit={this.props.handleSubmit} />
+            <MyNotes numTodos={this.props.notes.length} onDelete={this.props.onDelete} notes={this.props.notes} onFormSubmit={this.props.handleSubmit} />
           </form>
         </section>
       </div>
