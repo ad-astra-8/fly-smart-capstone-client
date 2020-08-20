@@ -45,21 +45,22 @@ class Checklist extends Component {
             body: JSON.stringify({
                 completed: true
                 }),
-        })
+            })
             .then(res => {
                 if (!res.ok)
                     return res.json().then(e => Promise.reject(e))
             })
-            .then(() => {
-            this.checkItem(id);
-            })
 
             .then(res => res.json())
-            .then(json => console.log(json))
-            .catch(error => {
-                console.error({ error })
-            })
-    }
+            .then(res => {
+                this.setState({
+                  completed: !this.item.completed
+                });      
+            })      
+            //     .catch(error => {
+            //     console.error({ error })
+            // })
+        }
 
 
 
@@ -101,10 +102,8 @@ class Checklist extends Component {
                         type="checkbox"
                         name="item"
                         value={item.id}
-                        // onChange={(event) => this.handleChange(item.id, item)}
                         onClick={(event, id) => this.checkItem(item.id)}
-                        // onClick={(event, id) => this.handleCheck(item.id)}
-                        // onChange={this.onClick}
+                        onClick={(event, id) => this.handleCheck(item.id)}
                     />
                     <label
                         className="checklist-label"
