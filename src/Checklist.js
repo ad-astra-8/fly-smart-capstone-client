@@ -18,6 +18,7 @@ class Checklist extends Component {
 
     checkItem = (id) => {
         console.log(`checkItem ran`);
+        console.log(`ITEM ID: ${id}`)
         this.setState({
             checklist: this.state.checklist.map(item => {
                 if (item.id === id) {
@@ -52,18 +53,18 @@ class Checklist extends Component {
         // console.log(`handlecheck ran, ${JSON.stringify(item)} `)
 
         // const body = { id, item: item.item, completed: event ? 1 : 0 }
-        const id = event.target.id;
+        // const id = event.target.id;
 
-        console.log(id);
+        // console.log(id);
 
         const item = {
-            id: this.id,
+            id: item.id,
             item: this.state.item,
             completed: 0,
         }
 
 
-        fetch(`${config.API_ENDPOINT}/checklist/${id}`, {
+        fetch(`${config.API_ENDPOINT}/checklist/${item.id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(item),
@@ -132,10 +133,10 @@ class Checklist extends Component {
                         id={item.id}
                         type="checkbox"
                         name="item"
-                        value={this.state.item}
+                        value={item.id}
                         // onChange={(event) => this.handleChange(item.id, item)}
-                        onClick={(event, id) => this.checkItem(item.id, item, this.checked)}
-                        // onClick={(event, id) => this.handleCheck(item.id)}
+                        onClick={(event, id) => this.checkItem(item.id)}
+                        onClick={(event, id) => this.handleCheck(item.id)}
                         onChange={this.onClick}
                     />
                     <label
@@ -156,7 +157,6 @@ class Checklist extends Component {
                     <h3>Check what you have ready to pack:</h3>
 
                     <form className="checklist-form"
-                        onClick={(event, id) => this.handleCheck(id)}
                     >
                         <ul className="checklist-container">
                             {myChecklist}

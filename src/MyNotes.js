@@ -5,13 +5,17 @@ import config from './config';
 class MyNotes extends Component {
 
   handleClickDelete = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const noteId = this.props.id
-    console.log(this.props.id)
+    const note = {
+      note: this.state.note,
+      completed: 0 ,
+    }
+    console.log(note)
 
 
-    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+
+    fetch(`${config.API_ENDPOINT}/notes/${note.id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -22,9 +26,9 @@ class MyNotes extends Component {
           return res.json().then(e => Promise.reject(e))
       })
       .then(() => {
-        this.props.deleteNote(noteId);
+        this.props.deleteNote(note.id);
         // allow parent to perform extra behaviour
-        this.props.onDelete(noteId)
+        this.props.onDelete(note.id)
       })
       .catch(error => {
         console.error({ error })
@@ -33,7 +37,6 @@ class MyNotes extends Component {
 
   render() {
     console.log(this.props.notes);
-    console.log(this.props.id);
     const { note, id } = this.props;
 
     const myNotes = this.props.notes.map((note, index) => {
