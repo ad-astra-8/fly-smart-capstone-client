@@ -124,8 +124,10 @@ color: black;
 }
 
 .form-wrapper {
-  display: flex;
   padding-left: 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: baseline;
 }
 
 .form-div {

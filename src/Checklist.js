@@ -140,7 +140,9 @@ class Checklist extends Component {
                     />
                     <label
                         className="checklist-label"
-                        htmlFor="item">{item.item}</label>
+                        htmlFor="item">
+                        {item.item}
+                    </label>
                 </li>
             );
         });
