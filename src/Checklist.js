@@ -38,25 +38,28 @@ class Checklist extends Component {
         console.log(`handlecheck fetch`);
         console.log(`item ID: ${id}`);
 
-
         fetch(`${config.API_ENDPOINT}/checklist/${id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({
-                completed: true
+                completed : "1" 
                 }),
             })
             .then(res => {
                 if (!res.ok)
                     return res.json().then(e => Promise.reject(e))
             })
-
+            .then((completed) => {
+                window.location = '/checklist'
+                // alert('Completed!');
+              })
+        
             .then(res => res.json())
-            .then(res => {
-                this.setState({
-                  completed: !this.item.completed
-                });      
-            })      
+            // .then(res => {
+            //     this.setState({
+            //       completed: !this.item.completed 
+            //     });      
+            // })      
             //     .catch(error => {
             //     console.error({ error })
             // })
