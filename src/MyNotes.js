@@ -17,24 +17,24 @@ class MyNotes extends Component {
 
 
 
-    // fetch(`${config.API_ENDPOINT}/notes/${note.id}`, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     'content-type': 'application/json'
-    //   },
-    // })
-    //   .then(res => {
-    //     if (!res.ok)
-    //       return res.json().then(e => Promise.reject(e))
-    //   })
-    //   .then(() => {
-    //     this.props.deleteNote(note.id);
-    //     // allow parent to perform extra behaviour
-    //     this.props.onDelete(note.id)
-    //   })
-    //   .catch(error => {
-    //     console.error({ error })
-    //   })
+    fetch(`${config.API_ENDPOINT}/notes/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      },
+    })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
+      })
+      .then(() => {
+        this.props.deleteNote(id);
+        // allow parent to perform extra behaviour
+        this.props.onDelete(id)
+      })
+      .catch(error => {
+        console.error({ error })
+      })
   }
 
   render() {

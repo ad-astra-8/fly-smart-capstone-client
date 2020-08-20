@@ -16,13 +16,13 @@ class Checklist extends Component {
     }
 
 
-    checkItem = (id) => {
+    checkItem = (id, item) => {
         console.log(`checkItem ran`);
-        console.log(`ITEM ID: ${id}`)
+        console.log(`ITEM ID: ${id}`)    
         this.setState({
             checklist: this.state.checklist.map(item => {
                 if (item.id === id) {
-                    //suppose to update 
+
                     return {
                         ...item,
                         completed: !item.completed
@@ -34,57 +34,28 @@ class Checklist extends Component {
         })
     }
 
-    // handleCurrentItemClick = (id) => {
-    //     this.setState({ currentItemId: id });
-    //     console.log(`${id} is current id`);
-    // };
-
-
-
-    // onClick = (event) => {
-    //     const id = event.target.getAttribute("id");
-    //     console.log(id);
-    //     return id
-    // }
-
-
     handleCheck = (id) => {
         console.log(`handlecheck fetch`);
         console.log(`item ID: ${id}`);
-
-        // const item = {
-        //     id: id,
-        //     item: this.state.item,
-        //     completed: 0,
-        // }
 
 
         fetch(`${config.API_ENDPOINT}/checklist/${id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
-            // body: JSON.stringify(item),
+            body: JSON.stringify({
+                completed: true
+                }),
         })
             .then(res => {
                 if (!res.ok)
                     return res.json().then(e => Promise.reject(e))
             })
-
             .then(() => {
-
-                this.checkItem(id);
-
-            //     let getCollectionByUserId = `${config.API_ENDPOINT}/checklist`;
-            //     //  ${TokenService.getUserId()};
-            //     fetch(getCollectionByUserId)
-            //         .then((response) => response.json())
-            //         .then((data) => {
-            //             console.log(data)
-            //             this.setState({
-            //                 checklist: data,
-            //             });
-            //         })
-            //         .catch((error) => console.log(error));
+            this.checkItem(id);
             })
+
+            .then(res => res.json())
+            .then(json => console.log(json))
             .catch(error => {
                 console.error({ error })
             })
@@ -107,21 +78,22 @@ class Checklist extends Component {
     }
 
     render() {
-        const myChecklist = this.state.checklist.sort(function (a, b) { return a.id - b.id }
-        ).map((item, index) => {
-            console.log(item);
-            console.log(item.id);
+        const myChecklist = this.state.checklist
+        .sort(function (a, b) { return a.id - b.id }
+        )
+        .map((item, index) => {
+            // console.log(item);
+            // console.log(item.id);
             return (
                 <li
                     className="checklist-item"
                     style={{
-                        textDecoration: item.completed
+                        textDecoration: item.completed 
                             ? "line-through"
                             : ""
                     }}
                     // if(item.completed == 0) {"checked"}
                     key={item.id}
-                    checked
                 >
                     <input
                         className="checklist-input"
@@ -131,7 +103,7 @@ class Checklist extends Component {
                         value={item.id}
                         // onChange={(event) => this.handleChange(item.id, item)}
                         onClick={(event, id) => this.checkItem(item.id)}
-                        onClick={(event, id) => this.handleCheck(item.id)}
+                        // onClick={(event, id) => this.handleCheck(item.id)}
                         // onChange={this.onClick}
                     />
                     <label
