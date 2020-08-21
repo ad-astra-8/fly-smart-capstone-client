@@ -51,7 +51,7 @@ class App extends Component {
 
     return (
       <div className="App" >
-        <main>
+        {/* <main> */}
           <BrowserRouter>
             <Switch>
               <Route exact path="/" component={LandingPage} />
@@ -66,7 +66,7 @@ class App extends Component {
             </Switch>
           </BrowserRouter>
 
-        </main>
+        {/* </main> */}
       </div >
     );
   }

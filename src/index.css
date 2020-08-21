@@ -41,17 +41,17 @@ h1 {
   text-decoration-line: overline;
 }
 
+.login-button {
+  margin-bottom: 40px;
+}
 
 .login-component {
   background-image: url('/images/vacations-list.jpg');  
   background-position: center center;
   background-repeat: repeat;
   background-attachment: scroll;
-  /* padding-top: 40px; */
-  /* padding-bottom: 80px; */
-  padding-bottom: 0px;
+  padding-bottom: 25px;
   padding-top: 39px;
-  margin-top: 0;
   text-align: center;
   background-size: cover;
   -webkit-background-size: cover;
@@ -62,8 +62,12 @@ h1 {
 }
 
 .login-div {
+  margin-top: 48px;
+}
+
+.reg-div {
   padding-bottom: 20px;
-  margin-top: 70px;
+  margin-top: 63px;
 }
 
 .login-input {
@@ -113,7 +117,7 @@ color: rgb(32, 32, 32);
 
 .form-div-reg {
   text-align: center;
-  padding-bottom: 55px;
+  /* padding-bottom: 55px; */
 }
 
 label {
@@ -172,7 +176,8 @@ Header styles (Main Module)
 }
 
 .nav-link {
-margin: 10px;
+  margin: 0px;
+  padding: 7px;
 }
 
 li {
@@ -310,7 +315,7 @@ padding-left: 10px;
 }
   
 .reactplayer:hover {
-  box-shadow: 2px 2px 5px rgb(202, 5, 5);;
+  box-shadow: 2px 2px 5px rgb(202, 5, 5);
 }
 /* -------------------------------------
 Footer styles (Main Module)
@@ -318,11 +323,17 @@ Footer styles (Main Module)
 */
 .footer {
   text-align: center;
-  line-height: 5px;
   color:  #fff;
   background-color: rgb(32, 32, 32);
+  font-size: 12px;
 }
 
+@media only screen and (min-width: 360px) {
+  .login-component {
+    height: 650px;
+  }
+
+}
 
 @media only screen and (min-width: 480px) {
 
@@ -330,6 +341,9 @@ Footer styles (Main Module)
     margin: 10px 20px 10px 20px;
   }
   
+  .login-component {
+    height: 650px;
+  }
 }
 
 @media only screen and (min-width: 640px) {
@@ -340,7 +354,10 @@ Footer styles (Main Module)
     section {
       padding: 20px 20px 40px 20px;
     }
-    
+
+    .login-component {
+      height: 650px;
+    }
 }
 
 
@@ -350,9 +367,13 @@ Footer styles (Main Module)
     }
   
     section {
-      padding: 20px 20px 40px 20px;
+      padding: 20px 20px 20px 20px;
     }
 
+    .login-component {
+      height: 650px;
+    }
+  
 }
 
 @media only screen and (min-width: 1000px) {
