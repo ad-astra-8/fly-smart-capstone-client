@@ -10,7 +10,7 @@ class Checklist extends Component {
         super(props);
         this.state = {
             checklist: [],
-            currentItemId: ""
+            completed: 0
         };
 
     }
@@ -33,33 +33,36 @@ class Checklist extends Component {
             })
         })
     }
-
+//when the user click on check, it changes completed state from 0 (false) to 1 (true)
+//then the item get crossed off
     handleCheck = (id) => {
         console.log(`handlecheck fetch`);
         console.log(`item ID: ${id}`);
+        const completed = this.state.completed
+        console.log(`${this.state.completed}`);
 
         fetch(`${config.API_ENDPOINT}/checklist/${id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({
-                completed : "1" 
-                }),
+            body: JSON.stringify(
+                //i dont know if this is rigth
+               {completed : 1}
+                ),
             })
             .then(res => {
                 if (!res.ok)
                     return res.json().then(e => Promise.reject(e))
             })
-            .then((completed) => {
-                window.location = '/checklist'
+            .then(() => {
+                // window.location = '/checklist'
                 // alert('Completed!');
-              })
+                            // .then(res => {
+            //on click i wanted to initiate the state change
+                this.setState({
+                  completed: !this.state.completed 
+                });      
+            })      
         
-            .then(res => res.json())
-            // .then(res => {
-            //     this.setState({
-            //       completed: !this.item.completed 
-            //     });      
-            // })      
             //     .catch(error => {
             //     console.error({ error })
             // })
@@ -89,6 +92,7 @@ class Checklist extends Component {
             // console.log(item);
             // console.log(item.id);
             return (
+                //checkbox and item to be crossed when completed
                 <li
                     className="checklist-item"
                     style={{
