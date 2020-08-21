@@ -35,8 +35,7 @@ body {
 */ 
 
 section {
-  padding: 40px 20px 40px 20px;
-
+  padding: 0px 20px 40px 20px;
 }
 
 h1 {
@@ -198,7 +197,11 @@ Header styles (Main Module)
   width: 100%;
   margin-bottom: 60px;
   text-align: center;
-  height: 60px;
+  /* height: 60px; */
+}
+
+.nav-link {
+margin: 10px;
 }
 
 li {
@@ -407,4 +410,47 @@ Footer styles (Main Module)
   line-height: 5px;
   color:  #fff;
   background-color: rgb(32, 32, 32);
+}
+
+
+@media only screen and (min-width: 480px) {
+
+  .nav-link {
+    margin: 10px 20px 10px 20px;
+  }
+  
+}
+
+@media only screen and (min-width: 640px) {
+  .nav-link {
+    margin: 10px 30px 10px 30px;
+    }
+
+    section {
+      padding: 20px 20px 40px 20px;
+    }
+    
+}
+
+
+@media only screen and (min-width: 768px) {
+  .nav-link {
+    margin: 10px 55px 10px 55px;
+    }
+  
+    section {
+      padding: 20px 20px 40px 20px;
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {
+  .nav-link {
+    margin: 10px 60px 10px 60px;
+    }
+
+    section {
+      padding: 20px 20px 40px 20px;
+    }
+
 }

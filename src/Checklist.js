@@ -127,7 +127,7 @@ class Checklist extends Component {
                 <Navbar />
                 <section className="checklist">
                     <h2 className="">Checklist</h2>
-                    <h3>Check what you have ready to pack:</h3>
+                    <h3>Check what you have ready:</h3>
 
                     <form className="checklist-form"
                     >
