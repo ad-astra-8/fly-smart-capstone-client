@@ -27,10 +27,10 @@ class MyNotes extends Component {
         if (!res.ok)
           return res.json().then(e => Promise.reject(e))
       })
-      .then(() => {
-        this.props.deleteNote(id);
-        // allow parent to perform extra behaviour
+      .then((id) => {
+        window.location = '/my-notes'
         this.props.onDelete(id)
+
       })
       .catch(error => {
         console.error({ error })

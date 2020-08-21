@@ -38,21 +38,19 @@ class MyNoteForm extends Component {
       })
 
       .then((note) => {
-        // alert('Post added!');
-        window.location = '/my-notes'
         this.props.addNote(note);
-        // this.props.history.push(`/my-list`)
+        window.location = '/my-notes'
       })
 
       .catch((error) => {
-        console.error({ error })
+        // console.error({ error })
       });
   };
 
 
 
   render() {
-    console.log(this.props.notes);
+    // console.log(this.props.notes);
 
     return (
       <div>
