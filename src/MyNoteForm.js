@@ -30,31 +30,25 @@ class MyNoteForm extends Component {
         method: 'POST',
         body: JSON.stringify(note),
         headers: {
-          'content-type': 'application/json'
+          'content-type': 'application/json',
         },
       })
       .then((res) => {
-        console.log('step one');
-        console.log('step one one ');
-        this.props.onAddNote(note);
-        // alert('Post added!');
-        window.location = '/my-notes'
-
-        // if (!res.ok) {
-        //   return res.json().then((error) => {
-        //     throw error;
-        //   });
-        // }
+        if (!res.ok) {
+          return res.json().then((error) => {
+            throw error;
+          });
+        }
         return res.json();
       })
-      .then(() => {
-        console.log('step two');
-        // this.props.onAddNote(data);
+      .then((note) => {
+        console.log('step one');
+        this.props.onAddNote(note);
         // alert('Post added!');
         // window.location = '/my-notes'
       })
       .catch((error) => {
-        console.log('step three');
+        console.log('step two');
         // console.error({ error })
       });
   };

@@ -57,12 +57,11 @@ class App extends Component {
     this.setState({ notes: [...this.state.notes, note] });
   }
 
-  handleDeleteNote = (noteId) => {
-    const newArr = [...this.state.notes];
-    newArr.splice(noteId, 1);
-    this.setState({ notes: newArr });
-  }
-
+  handleDeleteNote = noteId => {
+    this.setState({
+        notes: this.state.notes.filter(note => note.id !== noteId)
+    });
+};
 
   render() {
     console.log(this.state.notes);
