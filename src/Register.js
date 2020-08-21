@@ -73,7 +73,7 @@ class Register extends Component {
         <div className="login-div">
           <h1 className="login-title">Fly <i class="fa fa-plane" aria-hidden="true"></i> Smart</h1>
           <h2 className="subtitle">Create your account!</h2>
-          <div className="form-div">
+          <div className="form-div-reg">
             <form className="login-form" onSubmit={this.handleSubmit}>
               {errorMessage}
               <label htmlFor="enter-username">Enter Username:</label>

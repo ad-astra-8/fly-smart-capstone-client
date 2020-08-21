@@ -74,7 +74,7 @@ class Login extends Component {
     return (
       <section className="login-component">
         <div className="login-div">
-          <h1 className="login-title">Fly <i class="fa fa-plane" aria-hidden="true"></i> Smart</h1>
+          <h1 className="login-title">Fly <i className="fa fa-plane" aria-hidden="true"></i> Smart</h1>
           <h2 className="subtitle">Log in!</h2>
           <div className="form-div">
             <form className="login-form" onSubmit={this.handleSubmit}>
