@@ -37,7 +37,7 @@ class MyNotes extends Component {
 
   render() {
     // console.log(this.props.notes);
-    const { note, id } = this.props;
+    // const { note, id } = this.props;
 
     const myNotes = this.props.notes.map((note, index) => {
       // console.log(note.id);

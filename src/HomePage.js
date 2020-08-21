@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
 import ReactPlayer from 'react-player'
-import TokenService from './services/token-service.js';
+// import TokenService from './services/token-service.js';
 
 
 
@@ -14,7 +14,7 @@ class HomePage extends Component {
     }
 
     render() {
-        let User_Id = TokenService.getUserId();
+        // let User_Id = TokenService.getUserId();
         return (
             <div className='section-container'>
                 <Navbar className='nav-home'/>
@@ -29,7 +29,7 @@ class HomePage extends Component {
                     <p>-Wash your hands often or use hand sanitizer (with at least 60% alcohol).</p>
                     <p>-Avoid contact with anyone who is sick.</p>
                     <p>-Avoid touching your eyes, nose, and mouth.</p>
-                    <ReactPlayer className='reactplayer' url='https://youtu.be/u2qCGsWoRSc' width='250px' height='200px' playing='true' controls='true' volume='1' muted='true' alt='travel guidelines video' />
+                    <ReactPlayer className='reactplayer' url='https://youtu.be/u2qCGsWoRSc' width='250px' height='200px'  alt='travel guidelines video' />
                     <p >More about traveling during pandemic: <a className="web-resources" 
                     href="https://www.travelandleisure.com/airlines-airports/tsa-airport-security-coronavirus-hand-sanitizer-rules" 
                     target='_blank' rel="noopener noreferrer" 

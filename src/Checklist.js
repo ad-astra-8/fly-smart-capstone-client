@@ -38,7 +38,7 @@ class Checklist extends Component {
     handleCheck = (id) => {
         console.log(`handlecheck fetch`);
         console.log(`item ID: ${id}`);
-        const completed = this.state.completed
+        // const completed = this.state.completed
         console.log(`${this.state.completed}`);
 
         fetch(`${config.API_ENDPOINT}/checklist/${id}`, {
@@ -110,7 +110,7 @@ class Checklist extends Component {
                         name="item"
                         value={item.id}
                         onClick={(event, id) => this.checkItem(item.id)}
-                        onClick={(event, id) => this.handleCheck(item.id)}
+                        onChange={(event, id) => this.handleCheck(item.id)}
                     />
                     <label
                         className="checklist-label"

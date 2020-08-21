@@ -41,7 +41,7 @@ class App extends Component {
 };
 
   render() {
-    console.log(this.state.notes);
+    // console.log(this.state.notes);
 
     const value = {
       notes: this.state.notes,
