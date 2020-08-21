@@ -86,7 +86,7 @@ class App extends Component {
               <Route
                 exact
                 path="/my-notes"
-                render={(props) => <MyNoteForm numTodos={this.state.notes.length} notes={this.state.notes} onDelete={this.handleDeleteNote} onFormSubmit={this.handleAddNote} />}
+                render={(props) => <MyNoteForm numTodos={this.state.notes.length} notes={this.state.notes} onDeleteNote={this.handleDeleteNote} onAddNote={this.handleAddNote} />}
               />
 
               {/* <Route

@@ -17,11 +17,10 @@ class MyNotes extends Component {
 
 
 
-    fetch(`${config.API_ENDPOINT}/notes/${id}`, {
+    fetch(`${config.API_ENDPOINT}/notes/${id}`, 
+    {
       method: 'DELETE',
-      headers: {
-        'content-type': 'application/json'
-      },
+      headers: { 'content-type': 'application/json'},
     })
       .then(res => {
         if (!res.ok)
@@ -29,8 +28,7 @@ class MyNotes extends Component {
       })
       .then((id) => {
         window.location = '/my-notes'
-        this.props.onDelete(id)
-
+        this.props.onDeleteNote(id)
       })
       .catch(error => {
         console.error({ error })
@@ -46,11 +44,11 @@ class MyNotes extends Component {
       return (
         <li 
           className="my-notes"
-          key={note.id}
+          key={index}
           >
           <button
             className="delete"
-            type='button'
+            type='submit'
             name="completed"
             onClick={(event, id) => this.handleClickDelete(note.id)}
           >
