@@ -40,11 +40,11 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('handleSubmit ran')
+    // console.log('handleSubmit ran')
 
     const { loginUsername, loginPassword } = event.target
-    console.log(loginUsername.value)
-    console.log(loginPassword.value)
+    // console.log(loginUsername.value)
+    // console.log(loginPassword.value)
 
     AuthApiService.postLogin({
       userName: loginUsername.value,
@@ -58,11 +58,7 @@ class Login extends Component {
         // TokenService.saveAuthToken(response.authToken)
         // TokenService.saveUserId(response.userId)
         window.location = '/homepage'
-        console.log('logged in')
-
-        // .then(response => {
-
-        // })
+        // console.log('logged in')
 
 
       })
@@ -91,7 +87,6 @@ class Login extends Component {
                 placeholder="my.username@ymail.com"
                 required
               />
-              {/* <p className="error-message">username is not valid, please try again</p> */}
 
               <label htmlFor="loginPassword">Password: Newpassword1</label>
               <input
@@ -101,7 +96,6 @@ class Login extends Component {
                 placeholder="Password"
                 required
               />
-              {/* <p className="error-message">password is not valid, please try again</p> */}
 
               <button type="submit" className="login-button">
                 Login

@@ -23,7 +23,7 @@ class MyNoteForm extends Component {
       completed: 0,
     }
     
-    console.log(note)
+    // console.log(note)
 
     fetch(`${config.API_ENDPOINT}/notes`,
       {
@@ -44,7 +44,6 @@ class MyNoteForm extends Component {
       .then((note) => {
         console.log('step one');
         this.props.onAddNote(note);
-        // alert('Post added!');
         // window.location = '/my-notes'
       })
       .catch((error) => {

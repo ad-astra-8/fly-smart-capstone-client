@@ -84,7 +84,6 @@ class Register extends Component {
                 placeholder="my.username@ymail.com"
                 required
               />
-              {/* <p className="error-message">please enter a valid username</p> */}
               <label htmlFor="enter-password">Enter Password:</label>
               <input
                 className="login-input"
@@ -93,7 +92,6 @@ class Register extends Component {
                 placeholder="password"
                 required
               />
-              {/* <p className="error-message">please enter a valid password</p> */}
               <button type="submit" className="login-button">
                 Register
               </button>
