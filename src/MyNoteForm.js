@@ -68,9 +68,7 @@ class MyNoteForm extends Component {
               type='text'
               className='input'
               placeholder='Enter Item'
-              // value={this.state.note}
-              value=""
-
+              value={this.state.note}
               name="note"
               id="note"
               onChange={(e) => this.setState({ note: e.target.value })}
