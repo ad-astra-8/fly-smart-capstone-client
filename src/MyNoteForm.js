@@ -70,7 +70,7 @@ class MyNoteForm extends Component {
               required
             />
             <button className='button'>Submit</button>
-            {/* // My Notes cf to My List Nav link */}
+            {/* // MyNotes cf to "My List" nav link */}
             <MyNotes numTodos={this.props.notes.length} onDeleteNote={this.props.onDeleteNote} notes={this.props.notes} />
           </form>
         </section>

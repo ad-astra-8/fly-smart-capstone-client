@@ -40,11 +40,8 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // console.log('handleSubmit ran')
 
     const { loginUsername, loginPassword } = event.target
-    // console.log(loginUsername.value)
-    // console.log(loginPassword.value)
 
     AuthApiService.postLogin({
       userName: loginUsername.value,
@@ -58,7 +55,6 @@ class Login extends Component {
         // TokenService.saveAuthToken(response.authToken)
         // TokenService.saveUserId(response.userId)
         window.location = '/homepage'
-        // console.log('logged in')
 
 
       })

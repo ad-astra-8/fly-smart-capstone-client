@@ -11,6 +11,7 @@ import Register from './Register';
 
 class App extends Component {
   state = {
+    //testing the access of data before connecting to db
     // notes: ['note 1', 'note 2', 'note 3'],
     notes: [],
   };
@@ -41,7 +42,6 @@ class App extends Component {
 };
 
   render() {
-    // console.log(this.state.notes);
 
     const value = {
       notes: this.state.notes,
@@ -51,7 +51,7 @@ class App extends Component {
 
     return (
       <div className="App" >
-        {/* <main> */}
+        <main>
           <BrowserRouter>
             <Switch>
               <Route exact path="/" component={LandingPage} />
@@ -65,8 +65,7 @@ class App extends Component {
               />
             </Switch>
           </BrowserRouter>
-
-        {/* </main> */}
+        </main>
       </div >
     );
   }
