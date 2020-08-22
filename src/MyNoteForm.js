@@ -44,7 +44,7 @@ class MyNoteForm extends Component {
       .then((note) => {
         console.log('step one');
         this.props.onAddNote(note);
-        // window.location = '/my-notes'
+        window.location = '/my-notes'
       })
       .catch((error) => {
         console.log('step two');
@@ -76,6 +76,7 @@ class MyNoteForm extends Component {
               required
             />
             <button className='button'>Submit</button>
+            {/* // My Notes cf to My List Nav link */}
             <MyNotes numTodos={this.props.notes.length} onDeleteNote={this.props.onDeleteNote} notes={this.props.notes} />
           </form>
         </section>
