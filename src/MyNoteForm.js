@@ -62,7 +62,7 @@ class MyNoteForm extends Component {
         <Navbar />
         <section className="my-list">
 
-          <h2 className="forum">Create your own notes</h2>
+          <h2 className="forum">Create your own travel notes</h2>
           <form className="my-list-form" onSubmit={this.handleSubmit}>
             <input
               type='text'

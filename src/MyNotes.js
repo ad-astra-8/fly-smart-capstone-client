@@ -48,7 +48,7 @@ class MyNotes extends Component {
           >
           <button
             className="delete"
-            type='submit'
+            type='button'
             name="completed"
             onClick={(event, id) => this.handleClickDelete(note.id)}
           >

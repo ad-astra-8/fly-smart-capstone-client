@@ -325,7 +325,9 @@ Footer styles (Main Module)
   text-align: center;
   color:  #fff;
   background-color: rgb(32, 32, 32);
-  font-size: 12px;
+  font-size: 14px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 @media only screen and (min-width: 360px) {
