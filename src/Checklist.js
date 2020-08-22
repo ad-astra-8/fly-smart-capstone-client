@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Navbar from "./Navbar";
 import config from './config';
 
-// import Data from './Data';
-
 
 class Checklist extends Component {
     constructor(props) {
@@ -17,8 +15,6 @@ class Checklist extends Component {
 
 
     checkItem = (id, item) => {
-        console.log(`checkItem ran`);
-        console.log(`ITEM ID: ${id}`)
         this.setState({
             checklist: this.state.checklist.map(item => {
                 if (item.id === id) {
@@ -35,24 +31,17 @@ class Checklist extends Component {
     }
     //when the user click on check, it changes completed state from 0 (false) to 1 (true)
     //then the item get crossed off
+    
     handleCheck = (id) => {
-        console.log(`handlecheck fetch`);
-        console.log(`item ID: ${id}`);
-        // const completed = this.state.completed
-        console.log(`${this.state.completed}`);
-
-
 
         let item = this.state.checklist.find(item => item.id === id);
         // To invert this note's completed value, do this:
         // 1 - note.completed
 
-
         fetch(`${config.API_ENDPOINT}/checklist/${id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(
-                //i dont know if this is rigth
                 {completed : 1 - item.completed}
             ),
         })
@@ -61,17 +50,13 @@ class Checklist extends Component {
                     return res.json().then(e => Promise.reject(e))
             })
             .then(() => {
-                // window.location = '/checklist'
-                // alert('Completed!');
-                // .then(res => {
-                //on click i wanted to initiate the state change
                 this.setState({
                     completed: !this.state.completed
                 });
             })
 
             .catch(error => {
-        //     console.error({ error })
+            console.error({ error })
         })
     }
 
@@ -83,7 +68,6 @@ class Checklist extends Component {
         fetch(getCollectionByUserId)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data)
                 this.setState({
                     checklist: data,
                 });
@@ -96,10 +80,7 @@ class Checklist extends Component {
             .sort(function (a, b) { return a.id - b.id }
             )
             .map((item, index) => {
-                // console.log(item);
-                // console.log(item.id);
                 return (
-                    //checkbox and item to be crossed when completed
                     <li
                         className="checklist-item"
                         style={{
@@ -107,7 +88,6 @@ class Checklist extends Component {
                                 ? "line-through"
                                 : ""
                         }}
-                        // if(item.completed == 0) {"checked"}
                         key={item.id}
                     >
                         <input
