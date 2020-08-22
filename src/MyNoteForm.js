@@ -23,8 +23,6 @@ class MyNoteForm extends Component {
       completed: 0,
     }
     
-    // console.log(note)
-
     fetch(`${config.API_ENDPOINT}/notes`,
       {
         method: 'POST',
@@ -42,20 +40,17 @@ class MyNoteForm extends Component {
         return res.json();
       })
       .then((note) => {
-        console.log('step one');
         this.props.onAddNote(note);
         window.location = '/my-notes'
       })
       .catch((error) => {
-        console.log('step two');
-        // console.error({ error })
+        console.error({ error })
       });
   };
 
 
 
   render() {
-    // console.log(this.props.notes);
 
     return (
       <div>
@@ -72,7 +67,6 @@ class MyNoteForm extends Component {
               name="note"
               id="note"
               onChange={(e) => this.setState({ note: e.target.value })}
-              // onChange={(e) => this.addNote(e.target.value)}
               required
             />
             <button className='button'>Submit</button>

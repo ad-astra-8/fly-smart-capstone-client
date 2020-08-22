@@ -5,17 +5,6 @@ import config from './config';
 class MyNotes extends Component {
 
   handleClickDelete = (id) => {
-        // e.preventDefault();
-
-    console.log(`NOTE ID: ${id}`);
-
-    // const note = {
-    //   note: this.state.note,
-    //   completed: 0 ,
-    // }
-    // console.log(note)
-
-
 
     fetch(`${config.API_ENDPOINT}/notes/${id}`, 
     {
@@ -36,11 +25,8 @@ class MyNotes extends Component {
   }
 
   render() {
-    // console.log(this.props.notes);
-    // const { note, id } = this.props;
 
     const myNotes = this.props.notes.map((note, index) => {
-      // console.log(note.id);
       return (
         <li 
           className="my-notes"
