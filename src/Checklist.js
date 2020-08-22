@@ -103,7 +103,7 @@ class Checklist extends Component {
                     <li
                         className="checklist-item"
                         style={{
-                            textDecoration: item.completed
+                            textDecoration: item.completed == 1
                                 ? "line-through"
                                 : ""
                         }}
