@@ -114,7 +114,7 @@ class Checklist extends Component {
                 <Navbar />
                 <section className="checklist">
                     <h2 className="">TSA Security Checklist</h2>
-                    <h3>Check what you have ready:</h3>
+                    <h3>TSA shares tips on knowing what should go in a carry-on bag and how to get through airline security faster. Check the box when the task is completed:</h3>
 
                     <form className="checklist-form"
                     >
