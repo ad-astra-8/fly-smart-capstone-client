@@ -397,4 +397,7 @@ Footer styles (Main Module)
       padding: 20px 20px 40px 20px;
     }
 
+  .login-component {
+    height: 768px;
+  }
 }
