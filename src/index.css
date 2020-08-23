@@ -282,7 +282,7 @@ color: rgb(32, 32, 32);
 }
 
 .checklist-form {
-  width: 65%;
+  width: 60%;
 }
 
 .card-header-title{
@@ -399,5 +399,11 @@ Footer styles (Main Module)
 
   .login-component {
     height: 768px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .login-component {
+    height: 800px;
   }
 }
