@@ -277,9 +277,13 @@ color: rgb(32, 32, 32);
   cursor: pointer;
   }
   
-  .checklist-label {
-    padding-top: 7px;
-  }
+.checklist-label {
+  padding-top: 7px;
+}
+
+.checklist-form {
+  width: 65%;
+}
 
 .card-header-title{
 font-size: 19px;
