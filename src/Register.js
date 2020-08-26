@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import AuthApiService from './services/auth-api-service';
-// import TokenService from './services/token-service';
 
 class Register extends Component {
   constructor(props) {
@@ -30,8 +29,6 @@ class Register extends Component {
       .then(response => {
         registerUsername.value = ''
         registerPassword.value = ''
-        // TokenService.saveAuthToken(response.authToken)
-        // TokenService.saveUserId(response.id)
         window.location = '/homePage'
       })
 

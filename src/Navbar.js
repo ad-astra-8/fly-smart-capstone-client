@@ -20,7 +20,8 @@ class Navbar extends Component {
     return (
       <header className="Navbar">
         <nav>
-          <ul className="nav-container">            
+          <ul className="nav-container">  
+            <NavLink to="/about"><li className="nav-link">About</li></NavLink>          
             <NavLink to="/homepage"><li className="nav-link">Home</li></NavLink>
             <NavLink to="/checklist"><li className="nav-link">TSA Guide</li></NavLink>
             <NavLink to="/my-notes"><li className="nav-link">My List</li></NavLink>

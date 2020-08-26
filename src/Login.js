@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AuthApiService from './services/auth-api-service';
-import TokenService from './services/token-service';
 
 class Login extends Component {
   constructor(props) {
@@ -52,8 +51,6 @@ class Login extends Component {
       .then(response => {
         loginUsername.value = ''
         loginPassword.value = ''
-        // TokenService.saveAuthToken(response.authToken)
-        // TokenService.saveUserId(response.userId)
         window.location = '/homepage'
 
 

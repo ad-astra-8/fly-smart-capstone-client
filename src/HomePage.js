@@ -17,11 +17,6 @@ class HomePage extends Component {
             <div className='section-container'>
                 <Navbar className='nav-home'/>
                 <section className="homepage">
-                    <div className="presentation-ctn">
-                    <h2 className="section-title">Homepage</h2>
-                    <p className="presentation">Fly smart will help you organize your trip better and be a saavy traveler during the pandemic. Follow the guidelines and you will be off to a great trip. Bon Voyage!</p>
-                
-                    </div>
                     <h3><i className="fa fa-hand-paper-o" aria-hidden="true"></i> During your trip, take steps to protect yourself and others from COVID-19: </h3>
                     <p>-Wear a mask to keep your nose and mouth covered when in public settings.</p>
                     <p>-Avoid close contact by staying at least 6 feet (about 2 arms’ length) from anyone who is not from your household.</p>

@@ -1,4 +1,4 @@
-# Fly-Smart-capstone-client
+# Fly-Smart-App-client
 
 The app helps travelers getting more organized and alert for their upcoming trips. 
 It provides users with safety guidelines related to COVID 19 pandemic.
@@ -94,6 +94,7 @@ The app's functionality includes:
         * __LandingPage.js__ (stateful) - gets the _"prop name"_ and the _"callback prop name"_ from the __App.js__
             * __Login.js__ (stateful) - 
             * __Register.js__ (stateful) - 
+         * __About.js__ (stateless)  - 
         * __HomePage.js__ (stateful)  - 
             * __Navbar.js__ (stateless) - 
         * __Checklist.js__ (stateful) - 

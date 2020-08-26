@@ -5,21 +5,18 @@ import LandingPage from "./LandingPage";
 import HomePage from "./HomePage";
 import MyNoteForm from "./MyNoteForm";
 import Checklist from "./Checklist";
-import Register from './Register';
-// import Data from './Data';
+import Register from "./Register";
+import About from "./About";
 
 
 class App extends Component {
   state = {
-    //testing the access of data before connecting to db
-    // notes: ['note 1', 'note 2', 'note 3'],
     notes: [],
   };
 
   componentDidMount() {
 
     let getCollectionByUserId = `${config.API_ENDPOINT}/notes`;
-    //  ${TokenService.getUserId()};
 
     fetch(getCollectionByUserId)
       .then((response) => response.json())
@@ -55,6 +52,7 @@ class App extends Component {
           <BrowserRouter>
             <Switch>
               <Route exact path="/" component={LandingPage} />
+              <Route exact path="/about" component={About} />
               <Route exact path="/homepage" component={HomePage} />
               <Route path="/register" component={Register} />
               <Route path="/checklist" component={Checklist} />
