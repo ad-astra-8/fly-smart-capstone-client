@@ -51,7 +51,7 @@ class Login extends Component {
       .then(response => {
         loginUsername.value = ''
         loginPassword.value = ''
-        window.location = '/homepage'
+        window.location = '/about'
 
 
       })
