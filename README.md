@@ -1,4 +1,4 @@
-# Fly-Smart-App-client
+# Fly-Smart-App
 
 The app helps travelers getting more organized and alert for their upcoming trips. 
 It provides users with safety guidelines related to COVID 19 pandemic.

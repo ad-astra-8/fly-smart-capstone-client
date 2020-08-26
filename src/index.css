@@ -58,7 +58,8 @@ h1 {
   -moz-background-size: cover;
   -o-background-size: cover;
   position: relative;
-  /* min-height: 100vh; */
+  height: 768px;
+
 }
 
 .login-div {
@@ -342,7 +343,7 @@ Footer styles (Main Module)
 
 @media only screen and (min-width: 360px) {
   .login-component {
-    height: 650px;
+    height: 768px;
   }
 
 }
@@ -354,7 +355,7 @@ Footer styles (Main Module)
   }
   
   .login-component {
-    height: 650px;
+    height: 768px;
   }
 }
 
@@ -368,9 +369,9 @@ Footer styles (Main Module)
     }
 
     .login-component {
-      height: 650px;
+      height: 768px;
     }
-}
+  }
 
 
 @media only screen and (min-width: 768px) {
@@ -383,9 +384,9 @@ Footer styles (Main Module)
     }
 
     .login-component {
-      height: 650px;
+      height: 768px;
     }
-  
+    
 }
 
 @media only screen and (min-width: 1000px) {
